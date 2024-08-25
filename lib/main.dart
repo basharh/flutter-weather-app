@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather/pages/home.dart';
+import 'package:weather/pages/day.dart';
+import 'package:weather/pages/week.dart';
 
 void main() {
   runApp(const WeatherApp());
@@ -16,7 +17,11 @@ class WeatherApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Home(title: 'Flutter Demo Home Page'),
+      initialRoute: '/week',
+      routes: {
+        '/week': (_) => const WeekPage(),
+        '/day': (_) => const DayPage(),
+      },
     );
   }
 }
