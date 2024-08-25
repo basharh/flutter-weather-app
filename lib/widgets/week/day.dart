@@ -12,6 +12,7 @@ class DayAndDate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text('Monday'),
           Text('June 1'),
@@ -28,7 +29,14 @@ class DailyWeather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.all(3),
+      width: double.infinity,
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.black),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           const DayAndDate(day: 'Monday', date: 'June 1'),
           const TemperatureText(temperature: 75),

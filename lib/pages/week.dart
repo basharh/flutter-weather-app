@@ -30,11 +30,15 @@ class DaysColumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: List.generate(
-          7,
-          (index) => const DailyWeather(),
+    return Expanded(
+      child: Container(
+        child: Column(
+          children: List.generate(
+            7,
+            (index) => const Expanded(
+              child: DailyWeather(),
+            ),
+          ),
         ),
       ),
     );
@@ -48,13 +52,11 @@ class WeekPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Layout(
       title: 'Weekly Forecast',
-      child: Container(
-        child: const Column(
-          children: <Widget>[
-            HoursRow(),
-            DaysColumn(),
-          ],
-        ),
+      child: const Column(
+        children: <Widget>[
+          HoursRow(),
+          DaysColumn(),
+        ],
       ),
     );
   }

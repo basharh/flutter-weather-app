@@ -24,8 +24,11 @@ class Layout extends StatelessWidget {
         ),
         actions: actions,
       ),
-      body: Center(
-        child: child,
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+        child: Center(
+          child: child,
+        ),
       ),
     );
   }
