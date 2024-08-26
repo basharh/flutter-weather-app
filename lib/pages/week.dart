@@ -18,7 +18,7 @@ class HoursRow extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: List.generate(
           24,
-          (index) => HourlyWeather(),
+          (index) => const HourlyWeather(),
         ),
       ),
     );
@@ -31,13 +31,11 @@ class DaysColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        child: Column(
-          children: List.generate(
-            7,
-            (index) => const Expanded(
-              child: DailyWeather(),
-            ),
+      child: Column(
+        children: List.generate(
+          7,
+          (index) => const Expanded(
+            child: DailyWeather(),
           ),
         ),
       ),
@@ -50,9 +48,9 @@ class WeekPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Layout(
+    return const Layout(
       title: 'Weekly Forecast',
-      child: const Column(
+      child: Column(
         children: <Widget>[
           HoursRow(),
           DaysColumn(),

@@ -14,14 +14,189 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
+HourlyData _$HourlyDataFromJson(Map<String, dynamic> json) {
+  return _HourlyData.fromJson(json);
+}
+
+/// @nodoc
+mixin _$HourlyData {
+  List<String>? get time => throw _privateConstructorUsedError;
+  List<double>? get temperature_2m => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $HourlyDataCopyWith<HourlyData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HourlyDataCopyWith<$Res> {
+  factory $HourlyDataCopyWith(
+          HourlyData value, $Res Function(HourlyData) then) =
+      _$HourlyDataCopyWithImpl<$Res, HourlyData>;
+  @useResult
+  $Res call({List<String>? time, List<double>? temperature_2m});
+}
+
+/// @nodoc
+class _$HourlyDataCopyWithImpl<$Res, $Val extends HourlyData>
+    implements $HourlyDataCopyWith<$Res> {
+  _$HourlyDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? temperature_2m = freezed,
+  }) {
+    return _then(_value.copyWith(
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      temperature_2m: freezed == temperature_2m
+          ? _value.temperature_2m
+          : temperature_2m // ignore: cast_nullable_to_non_nullable
+              as List<double>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$HourlyDataImplCopyWith<$Res>
+    implements $HourlyDataCopyWith<$Res> {
+  factory _$$HourlyDataImplCopyWith(
+          _$HourlyDataImpl value, $Res Function(_$HourlyDataImpl) then) =
+      __$$HourlyDataImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<String>? time, List<double>? temperature_2m});
+}
+
+/// @nodoc
+class __$$HourlyDataImplCopyWithImpl<$Res>
+    extends _$HourlyDataCopyWithImpl<$Res, _$HourlyDataImpl>
+    implements _$$HourlyDataImplCopyWith<$Res> {
+  __$$HourlyDataImplCopyWithImpl(
+      _$HourlyDataImpl _value, $Res Function(_$HourlyDataImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? temperature_2m = freezed,
+  }) {
+    return _then(_$HourlyDataImpl(
+      time: freezed == time
+          ? _value._time
+          : time // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      temperature_2m: freezed == temperature_2m
+          ? _value._temperature_2m
+          : temperature_2m // ignore: cast_nullable_to_non_nullable
+              as List<double>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$HourlyDataImpl implements _HourlyData {
+  _$HourlyDataImpl(
+      {final List<String>? time, final List<double>? temperature_2m})
+      : _time = time,
+        _temperature_2m = temperature_2m;
+
+  factory _$HourlyDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HourlyDataImplFromJson(json);
+
+  final List<String>? _time;
+  @override
+  List<String>? get time {
+    final value = _time;
+    if (value == null) return null;
+    if (_time is EqualUnmodifiableListView) return _time;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<double>? _temperature_2m;
+  @override
+  List<double>? get temperature_2m {
+    final value = _temperature_2m;
+    if (value == null) return null;
+    if (_temperature_2m is EqualUnmodifiableListView) return _temperature_2m;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  String toString() {
+    return 'HourlyData(time: $time, temperature_2m: $temperature_2m)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HourlyDataImpl &&
+            const DeepCollectionEquality().equals(other._time, _time) &&
+            const DeepCollectionEquality()
+                .equals(other._temperature_2m, _temperature_2m));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_time),
+      const DeepCollectionEquality().hash(_temperature_2m));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HourlyDataImplCopyWith<_$HourlyDataImpl> get copyWith =>
+      __$$HourlyDataImplCopyWithImpl<_$HourlyDataImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$HourlyDataImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _HourlyData implements HourlyData {
+  factory _HourlyData(
+      {final List<String>? time,
+      final List<double>? temperature_2m}) = _$HourlyDataImpl;
+
+  factory _HourlyData.fromJson(Map<String, dynamic> json) =
+      _$HourlyDataImpl.fromJson;
+
+  @override
+  List<String>? get time;
+  @override
+  List<double>? get temperature_2m;
+  @override
+  @JsonKey(ignore: true)
+  _$$HourlyDataImplCopyWith<_$HourlyDataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 ForecastResponse _$ForecastResponseFromJson(Map<String, dynamic> json) {
   return _ForecastResponse.fromJson(json);
 }
 
 /// @nodoc
 mixin _$ForecastResponse {
-  String? get a => throw _privateConstructorUsedError;
-  int? get b => throw _privateConstructorUsedError;
+  HourlyData? get hourly => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +210,9 @@ abstract class $ForecastResponseCopyWith<$Res> {
           ForecastResponse value, $Res Function(ForecastResponse) then) =
       _$ForecastResponseCopyWithImpl<$Res, ForecastResponse>;
   @useResult
-  $Res call({String? a, int? b});
+  $Res call({HourlyData? hourly});
+
+  $HourlyDataCopyWith<$Res>? get hourly;
 }
 
 /// @nodoc
@@ -51,19 +228,26 @@ class _$ForecastResponseCopyWithImpl<$Res, $Val extends ForecastResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? a = freezed,
-    Object? b = freezed,
+    Object? hourly = freezed,
   }) {
     return _then(_value.copyWith(
-      a: freezed == a
-          ? _value.a
-          : a // ignore: cast_nullable_to_non_nullable
-              as String?,
-      b: freezed == b
-          ? _value.b
-          : b // ignore: cast_nullable_to_non_nullable
-              as int?,
+      hourly: freezed == hourly
+          ? _value.hourly
+          : hourly // ignore: cast_nullable_to_non_nullable
+              as HourlyData?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $HourlyDataCopyWith<$Res>? get hourly {
+    if (_value.hourly == null) {
+      return null;
+    }
+
+    return $HourlyDataCopyWith<$Res>(_value.hourly!, (value) {
+      return _then(_value.copyWith(hourly: value) as $Val);
+    });
   }
 }
 
@@ -75,7 +259,10 @@ abstract class _$$ForecastResponseImplCopyWith<$Res>
       __$$ForecastResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? a, int? b});
+  $Res call({HourlyData? hourly});
+
+  @override
+  $HourlyDataCopyWith<$Res>? get hourly;
 }
 
 /// @nodoc
@@ -89,18 +276,13 @@ class __$$ForecastResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? a = freezed,
-    Object? b = freezed,
+    Object? hourly = freezed,
   }) {
     return _then(_$ForecastResponseImpl(
-      a: freezed == a
-          ? _value.a
-          : a // ignore: cast_nullable_to_non_nullable
-              as String?,
-      b: freezed == b
-          ? _value.b
-          : b // ignore: cast_nullable_to_non_nullable
-              as int?,
+      hourly: freezed == hourly
+          ? _value.hourly
+          : hourly // ignore: cast_nullable_to_non_nullable
+              as HourlyData?,
     ));
   }
 }
@@ -108,19 +290,17 @@ class __$$ForecastResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ForecastResponseImpl implements _ForecastResponse {
-  _$ForecastResponseImpl({this.a, this.b});
+  _$ForecastResponseImpl({this.hourly});
 
   factory _$ForecastResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ForecastResponseImplFromJson(json);
 
   @override
-  final String? a;
-  @override
-  final int? b;
+  final HourlyData? hourly;
 
   @override
   String toString() {
-    return 'ForecastResponse(a: $a, b: $b)';
+    return 'ForecastResponse(hourly: $hourly)';
   }
 
   @override
@@ -128,13 +308,12 @@ class _$ForecastResponseImpl implements _ForecastResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ForecastResponseImpl &&
-            (identical(other.a, a) || other.a == a) &&
-            (identical(other.b, b) || other.b == b));
+            (identical(other.hourly, hourly) || other.hourly == hourly));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, a, b);
+  int get hashCode => Object.hash(runtimeType, hourly);
 
   @JsonKey(ignore: true)
   @override
@@ -152,16 +331,14 @@ class _$ForecastResponseImpl implements _ForecastResponse {
 }
 
 abstract class _ForecastResponse implements ForecastResponse {
-  factory _ForecastResponse({final String? a, final int? b}) =
+  factory _ForecastResponse({final HourlyData? hourly}) =
       _$ForecastResponseImpl;
 
   factory _ForecastResponse.fromJson(Map<String, dynamic> json) =
       _$ForecastResponseImpl.fromJson;
 
   @override
-  String? get a;
-  @override
-  int? get b;
+  HourlyData? get hourly;
   @override
   @JsonKey(ignore: true)
   _$$ForecastResponseImplCopyWith<_$ForecastResponseImpl> get copyWith =>
