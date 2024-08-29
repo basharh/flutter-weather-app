@@ -18,7 +18,7 @@ class HoursRow extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: List.generate(
           24,
-          (index) => const HourlyWeather(),
+          (index) => HourlyWeather(index: index),
         ),
       ),
     );

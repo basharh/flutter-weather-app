@@ -5,7 +5,9 @@ import 'package:weather/widgets/common/weather_icon.dart';
 
 /// A widget that displays the hourly weather in a column
 class HourlyWeather extends StatelessWidget {
-  const HourlyWeather({super.key});
+  final int index;
+
+  const HourlyWeather({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {

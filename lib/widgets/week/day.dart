@@ -41,11 +41,11 @@ class DailyWeather extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black),
       ),
-      child: Row(
+      child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          const DayAndDate(day: 'Monday', date: 'June 1'),
-          const TemperatureText(temperature: 75),
+          DayAndDate(day: 'Monday', date: 'June 1'),
+          TemperatureText(temperature: 75),
           WeatherIcon(condition: WeatherCondition.thunderstorm),
         ],
       ),
