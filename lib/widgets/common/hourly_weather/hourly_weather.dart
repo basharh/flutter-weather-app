@@ -21,7 +21,10 @@ class HourlyWeather extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           TimeText(time: '12:00'),
-          WeatherIcon(condition: WeatherCondition.thunderstorm),
+          SizedBox(height: 5),
+          Expanded(
+            child: WeatherIcon(condition: WeatherCondition.thunderstorm),
+          ),
           TemperatureText(temperature: 75),
         ],
       ),

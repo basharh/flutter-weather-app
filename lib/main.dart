@@ -7,7 +7,9 @@ void main() {
 }
 
 class WeatherApp extends StatelessWidget {
-  const WeatherApp({super.key});
+  final String initialRoute;
+
+  const WeatherApp({super.key, this.initialRoute = '/week'});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class WeatherApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/week',
+      initialRoute: initialRoute,
       routes: {
         '/week': (_) => const WeekPage(),
         '/day': (_) => const DayPage(),

@@ -14,8 +14,14 @@ class DayAndDate extends StatelessWidget {
       child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('Monday'),
-          Text('June 1'),
+          Expanded(
+            child: Center(
+              child: Text(
+                'Monday\nJune 1',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
         ],
       ),
     );
