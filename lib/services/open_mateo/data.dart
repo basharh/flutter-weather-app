@@ -8,31 +8,51 @@ part 'data.g.dart';
 @freezed
 class HourlyData with _$HourlyData {
   factory HourlyData({
-    List<String>? time,
-    List<double>? temperature_2m,
+    String? time,
+    double? temperature_2m,
+    int? weather_code,
   }) = _HourlyData;
-
-  factory HourlyData.fromJson(Map<String, Object?> json) =>
-      _$HourlyDataFromJson(json);
 }
 
 @freezed
 class DailyData with _$DailyData {
   factory DailyData({
+    String? time,
+    double? temperature_2m_min,
+    double? temperature_2m_max,
+    int? weather_code,
+  }) = _DailyData;
+}
+
+@freezed
+class HourlyDataResponse with _$HourlyDataResponse {
+  factory HourlyDataResponse({
+    List<String>? time,
+    List<double>? temperature_2m,
+    List<int>? weather_code,
+  }) = _HourlyDataResponse;
+
+  factory HourlyDataResponse.fromJson(Map<String, Object?> json) =>
+      _$HourlyDataResponseFromJson(json);
+}
+
+@freezed
+class DailyDataResponse with _$DailyDataResponse {
+  factory DailyDataResponse({
     List<String>? time,
     List<double>? temperature_2m_min,
     List<double>? temperature_2m_max,
-    List<String>? weather_code,
-  }) = _DailyData;
+    List<int>? weather_code,
+  }) = _DailyDataResponse;
 
-  factory DailyData.fromJson(Map<String, Object?> json) =>
-      _$DailyDataFromJson(json);
+  factory DailyDataResponse.fromJson(Map<String, Object?> json) =>
+      _$DailyDataResponseFromJson(json);
 }
 
 @freezed
 class HourlyForecastResponse with _$HourlyForecastResponse {
   factory HourlyForecastResponse({
-    HourlyData? hourly,
+    HourlyDataResponse? hourly,
   }) = _HourlyForecastResponse;
 
   factory HourlyForecastResponse.fromJson(Map<String, Object?> json) =>
@@ -42,7 +62,7 @@ class HourlyForecastResponse with _$HourlyForecastResponse {
 @freezed
 class DailyForecastResponse with _$DailyForecastResponse {
   factory DailyForecastResponse({
-    DailyData? hourly,
+    DailyDataResponse? daily,
   }) = _DailyForecastResponse;
 
   factory DailyForecastResponse.fromJson(Map<String, Object?> json) =>

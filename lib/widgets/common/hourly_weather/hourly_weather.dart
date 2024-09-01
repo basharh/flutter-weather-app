@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:weather/services/open_mateo/data.dart';
 import 'package:weather/widgets/common/temperature_text.dart';
 import 'package:weather/widgets/common/time.dart';
 import 'package:weather/widgets/common/weather_icon.dart';
 
 /// A widget that displays the hourly weather in a column
 class HourlyWeather extends StatelessWidget {
-  final int index;
+  final String hour;
+  final HourlyData hourlyData;
 
-  const HourlyWeather({super.key, required this.index});
+  const HourlyWeather({
+    super.key,
+    required this.hour,
+    required this.hourlyData,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,16 +24,20 @@ class HourlyWeather extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black),
       ),
-      child: const Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          TimeText(time: '12:00'),
+          TimeText(time: hour.substring(11)),
           SizedBox(height: 5),
           Expanded(
-            child: WeatherIcon(condition: WeatherCondition.thunderstorm),
+            child: WeatherIcon(
+              weatherCode: hourlyData.weather_code ?? 0,
+            ),
           ),
-          TemperatureText(temperature: 75),
+          TemperatureText(
+            temperature: hourlyData.temperature_2m ?? 0,
+          ),
         ],
       ),
     );

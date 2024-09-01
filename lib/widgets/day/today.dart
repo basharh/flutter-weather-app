@@ -10,7 +10,7 @@ class HoursRow extends StatelessWidget {
       child: Row(
         children: List.generate(
           24,
-          (index) => const HourlyWeather(),
+          (index) => HourlyWeather(index: index),
         ),
       ),
     );

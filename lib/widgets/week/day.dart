@@ -1,39 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:weather/services/open_mateo/data.dart';
 import 'package:weather/widgets/common/temperature_text.dart';
 import 'package:weather/widgets/common/weather_icon.dart';
 
 class DayAndDate extends StatelessWidget {
-  final String day;
   final String date;
 
-  const DayAndDate({super.key, required this.day, required this.date});
+  const DayAndDate({super.key, required this.date});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            child: Center(
-              child: Text(
-                'Monday\nJune 1',
-                textAlign: TextAlign.center,
-              ),
+    final d = DateTime.parse(date);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        FittedBox(
+          child: Center(
+            child: Text(
+              '${DateFormat('EEEE').format(d)},\n${DateFormat('MMM d').format(d)}',
+              textAlign: TextAlign.left,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
 
 /// A widget that displays the daily weather in a row
 class DailyWeather extends StatelessWidget {
-  const DailyWeather({super.key});
+  final String day;
+  final DailyData dailyData;
+
+  const DailyWeather({
+    super.key,
+    required this.day,
+    required this.dailyData,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final DateTime d = DateTime.parse(day);
+
     return Container(
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(3),
@@ -41,12 +51,26 @@ class DailyWeather extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black),
       ),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          DayAndDate(day: 'Monday', date: 'June 1'),
-          TemperatureText(temperature: 75),
-          WeatherIcon(condition: WeatherCondition.thunderstorm),
+          Expanded(
+            flex: 1,
+            child: DayAndDate(
+              date: DateFormat('yyyy-MM-dd').format(d),
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child:
+                TemperatureText(temperature: dailyData.temperature_2m_min ?? 0),
+          ),
+          Expanded(
+            flex: 1,
+            child: WeatherIcon(
+              weatherCode: dailyData.weather_code ?? 0,
+            ),
+          ),
         ],
       ),
     );

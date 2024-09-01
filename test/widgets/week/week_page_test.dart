@@ -1,9 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:weather/main.dart';
 
-import 'package:weather/pages/week.dart';
 import 'package:weather/widgets/common/hourly_weather/hourly_weather.dart';
 import 'package:weather/widgets/week/day.dart';
+import 'package:weather/widgets/week/days_column.dart';
+import 'package:weather/widgets/week/hours_row.dart';
 
 void main() {
   group('WeekPage', () {

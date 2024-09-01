@@ -14,16 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-HourlyData _$HourlyDataFromJson(Map<String, dynamic> json) {
-  return _HourlyData.fromJson(json);
-}
-
 /// @nodoc
 mixin _$HourlyData {
-  List<String>? get time => throw _privateConstructorUsedError;
-  List<double>? get temperature_2m => throw _privateConstructorUsedError;
+  String? get time => throw _privateConstructorUsedError;
+  double? get temperature_2m => throw _privateConstructorUsedError;
+  int? get weather_code => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HourlyDataCopyWith<HourlyData> get copyWith =>
       throw _privateConstructorUsedError;
@@ -35,7 +31,7 @@ abstract class $HourlyDataCopyWith<$Res> {
           HourlyData value, $Res Function(HourlyData) then) =
       _$HourlyDataCopyWithImpl<$Res, HourlyData>;
   @useResult
-  $Res call({List<String>? time, List<double>? temperature_2m});
+  $Res call({String? time, double? temperature_2m, int? weather_code});
 }
 
 /// @nodoc
@@ -53,16 +49,21 @@ class _$HourlyDataCopyWithImpl<$Res, $Val extends HourlyData>
   $Res call({
     Object? time = freezed,
     Object? temperature_2m = freezed,
+    Object? weather_code = freezed,
   }) {
     return _then(_value.copyWith(
       time: freezed == time
           ? _value.time
           : time // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as String?,
       temperature_2m: freezed == temperature_2m
           ? _value.temperature_2m
           : temperature_2m // ignore: cast_nullable_to_non_nullable
-              as List<double>?,
+              as double?,
+      weather_code: freezed == weather_code
+          ? _value.weather_code
+          : weather_code // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -75,7 +76,7 @@ abstract class _$$HourlyDataImplCopyWith<$Res>
       __$$HourlyDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<String>? time, List<double>? temperature_2m});
+  $Res call({String? time, double? temperature_2m, int? weather_code});
 }
 
 /// @nodoc
@@ -91,8 +92,359 @@ class __$$HourlyDataImplCopyWithImpl<$Res>
   $Res call({
     Object? time = freezed,
     Object? temperature_2m = freezed,
+    Object? weather_code = freezed,
   }) {
     return _then(_$HourlyDataImpl(
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      temperature_2m: freezed == temperature_2m
+          ? _value.temperature_2m
+          : temperature_2m // ignore: cast_nullable_to_non_nullable
+              as double?,
+      weather_code: freezed == weather_code
+          ? _value.weather_code
+          : weather_code // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$HourlyDataImpl implements _HourlyData {
+  _$HourlyDataImpl({this.time, this.temperature_2m, this.weather_code});
+
+  @override
+  final String? time;
+  @override
+  final double? temperature_2m;
+  @override
+  final int? weather_code;
+
+  @override
+  String toString() {
+    return 'HourlyData(time: $time, temperature_2m: $temperature_2m, weather_code: $weather_code)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$HourlyDataImpl &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.temperature_2m, temperature_2m) ||
+                other.temperature_2m == temperature_2m) &&
+            (identical(other.weather_code, weather_code) ||
+                other.weather_code == weather_code));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, time, temperature_2m, weather_code);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$HourlyDataImplCopyWith<_$HourlyDataImpl> get copyWith =>
+      __$$HourlyDataImplCopyWithImpl<_$HourlyDataImpl>(this, _$identity);
+}
+
+abstract class _HourlyData implements HourlyData {
+  factory _HourlyData(
+      {final String? time,
+      final double? temperature_2m,
+      final int? weather_code}) = _$HourlyDataImpl;
+
+  @override
+  String? get time;
+  @override
+  double? get temperature_2m;
+  @override
+  int? get weather_code;
+  @override
+  @JsonKey(ignore: true)
+  _$$HourlyDataImplCopyWith<_$HourlyDataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$DailyData {
+  String? get time => throw _privateConstructorUsedError;
+  double? get temperature_2m_min => throw _privateConstructorUsedError;
+  double? get temperature_2m_max => throw _privateConstructorUsedError;
+  int? get weather_code => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $DailyDataCopyWith<DailyData> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DailyDataCopyWith<$Res> {
+  factory $DailyDataCopyWith(DailyData value, $Res Function(DailyData) then) =
+      _$DailyDataCopyWithImpl<$Res, DailyData>;
+  @useResult
+  $Res call(
+      {String? time,
+      double? temperature_2m_min,
+      double? temperature_2m_max,
+      int? weather_code});
+}
+
+/// @nodoc
+class _$DailyDataCopyWithImpl<$Res, $Val extends DailyData>
+    implements $DailyDataCopyWith<$Res> {
+  _$DailyDataCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? temperature_2m_min = freezed,
+    Object? temperature_2m_max = freezed,
+    Object? weather_code = freezed,
+  }) {
+    return _then(_value.copyWith(
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      temperature_2m_min: freezed == temperature_2m_min
+          ? _value.temperature_2m_min
+          : temperature_2m_min // ignore: cast_nullable_to_non_nullable
+              as double?,
+      temperature_2m_max: freezed == temperature_2m_max
+          ? _value.temperature_2m_max
+          : temperature_2m_max // ignore: cast_nullable_to_non_nullable
+              as double?,
+      weather_code: freezed == weather_code
+          ? _value.weather_code
+          : weather_code // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DailyDataImplCopyWith<$Res>
+    implements $DailyDataCopyWith<$Res> {
+  factory _$$DailyDataImplCopyWith(
+          _$DailyDataImpl value, $Res Function(_$DailyDataImpl) then) =
+      __$$DailyDataImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String? time,
+      double? temperature_2m_min,
+      double? temperature_2m_max,
+      int? weather_code});
+}
+
+/// @nodoc
+class __$$DailyDataImplCopyWithImpl<$Res>
+    extends _$DailyDataCopyWithImpl<$Res, _$DailyDataImpl>
+    implements _$$DailyDataImplCopyWith<$Res> {
+  __$$DailyDataImplCopyWithImpl(
+      _$DailyDataImpl _value, $Res Function(_$DailyDataImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? temperature_2m_min = freezed,
+    Object? temperature_2m_max = freezed,
+    Object? weather_code = freezed,
+  }) {
+    return _then(_$DailyDataImpl(
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as String?,
+      temperature_2m_min: freezed == temperature_2m_min
+          ? _value.temperature_2m_min
+          : temperature_2m_min // ignore: cast_nullable_to_non_nullable
+              as double?,
+      temperature_2m_max: freezed == temperature_2m_max
+          ? _value.temperature_2m_max
+          : temperature_2m_max // ignore: cast_nullable_to_non_nullable
+              as double?,
+      weather_code: freezed == weather_code
+          ? _value.weather_code
+          : weather_code // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DailyDataImpl implements _DailyData {
+  _$DailyDataImpl(
+      {this.time,
+      this.temperature_2m_min,
+      this.temperature_2m_max,
+      this.weather_code});
+
+  @override
+  final String? time;
+  @override
+  final double? temperature_2m_min;
+  @override
+  final double? temperature_2m_max;
+  @override
+  final int? weather_code;
+
+  @override
+  String toString() {
+    return 'DailyData(time: $time, temperature_2m_min: $temperature_2m_min, temperature_2m_max: $temperature_2m_max, weather_code: $weather_code)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DailyDataImpl &&
+            (identical(other.time, time) || other.time == time) &&
+            (identical(other.temperature_2m_min, temperature_2m_min) ||
+                other.temperature_2m_min == temperature_2m_min) &&
+            (identical(other.temperature_2m_max, temperature_2m_max) ||
+                other.temperature_2m_max == temperature_2m_max) &&
+            (identical(other.weather_code, weather_code) ||
+                other.weather_code == weather_code));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, time, temperature_2m_min, temperature_2m_max, weather_code);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DailyDataImplCopyWith<_$DailyDataImpl> get copyWith =>
+      __$$DailyDataImplCopyWithImpl<_$DailyDataImpl>(this, _$identity);
+}
+
+abstract class _DailyData implements DailyData {
+  factory _DailyData(
+      {final String? time,
+      final double? temperature_2m_min,
+      final double? temperature_2m_max,
+      final int? weather_code}) = _$DailyDataImpl;
+
+  @override
+  String? get time;
+  @override
+  double? get temperature_2m_min;
+  @override
+  double? get temperature_2m_max;
+  @override
+  int? get weather_code;
+  @override
+  @JsonKey(ignore: true)
+  _$$DailyDataImplCopyWith<_$DailyDataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+HourlyDataResponse _$HourlyDataResponseFromJson(Map<String, dynamic> json) {
+  return _HourlyDataResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$HourlyDataResponse {
+  List<String>? get time => throw _privateConstructorUsedError;
+  List<double>? get temperature_2m => throw _privateConstructorUsedError;
+  List<int>? get weather_code => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $HourlyDataResponseCopyWith<HourlyDataResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $HourlyDataResponseCopyWith<$Res> {
+  factory $HourlyDataResponseCopyWith(
+          HourlyDataResponse value, $Res Function(HourlyDataResponse) then) =
+      _$HourlyDataResponseCopyWithImpl<$Res, HourlyDataResponse>;
+  @useResult
+  $Res call(
+      {List<String>? time,
+      List<double>? temperature_2m,
+      List<int>? weather_code});
+}
+
+/// @nodoc
+class _$HourlyDataResponseCopyWithImpl<$Res, $Val extends HourlyDataResponse>
+    implements $HourlyDataResponseCopyWith<$Res> {
+  _$HourlyDataResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? temperature_2m = freezed,
+    Object? weather_code = freezed,
+  }) {
+    return _then(_value.copyWith(
+      time: freezed == time
+          ? _value.time
+          : time // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      temperature_2m: freezed == temperature_2m
+          ? _value.temperature_2m
+          : temperature_2m // ignore: cast_nullable_to_non_nullable
+              as List<double>?,
+      weather_code: freezed == weather_code
+          ? _value.weather_code
+          : weather_code // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$HourlyDataResponseImplCopyWith<$Res>
+    implements $HourlyDataResponseCopyWith<$Res> {
+  factory _$$HourlyDataResponseImplCopyWith(_$HourlyDataResponseImpl value,
+          $Res Function(_$HourlyDataResponseImpl) then) =
+      __$$HourlyDataResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<String>? time,
+      List<double>? temperature_2m,
+      List<int>? weather_code});
+}
+
+/// @nodoc
+class __$$HourlyDataResponseImplCopyWithImpl<$Res>
+    extends _$HourlyDataResponseCopyWithImpl<$Res, _$HourlyDataResponseImpl>
+    implements _$$HourlyDataResponseImplCopyWith<$Res> {
+  __$$HourlyDataResponseImplCopyWithImpl(_$HourlyDataResponseImpl _value,
+      $Res Function(_$HourlyDataResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? time = freezed,
+    Object? temperature_2m = freezed,
+    Object? weather_code = freezed,
+  }) {
+    return _then(_$HourlyDataResponseImpl(
       time: freezed == time
           ? _value._time
           : time // ignore: cast_nullable_to_non_nullable
@@ -101,20 +453,27 @@ class __$$HourlyDataImplCopyWithImpl<$Res>
           ? _value._temperature_2m
           : temperature_2m // ignore: cast_nullable_to_non_nullable
               as List<double>?,
+      weather_code: freezed == weather_code
+          ? _value._weather_code
+          : weather_code // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$HourlyDataImpl implements _HourlyData {
-  _$HourlyDataImpl(
-      {final List<String>? time, final List<double>? temperature_2m})
+class _$HourlyDataResponseImpl implements _HourlyDataResponse {
+  _$HourlyDataResponseImpl(
+      {final List<String>? time,
+      final List<double>? temperature_2m,
+      final List<int>? weather_code})
       : _time = time,
-        _temperature_2m = temperature_2m;
+        _temperature_2m = temperature_2m,
+        _weather_code = weather_code;
 
-  factory _$HourlyDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$HourlyDataImplFromJson(json);
+  factory _$HourlyDataResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HourlyDataResponseImplFromJson(json);
 
   final List<String>? _time;
   @override
@@ -136,19 +495,31 @@ class _$HourlyDataImpl implements _HourlyData {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<int>? _weather_code;
+  @override
+  List<int>? get weather_code {
+    final value = _weather_code;
+    if (value == null) return null;
+    if (_weather_code is EqualUnmodifiableListView) return _weather_code;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'HourlyData(time: $time, temperature_2m: $temperature_2m)';
+    return 'HourlyDataResponse(time: $time, temperature_2m: $temperature_2m, weather_code: $weather_code)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HourlyDataImpl &&
+            other is _$HourlyDataResponseImpl &&
             const DeepCollectionEquality().equals(other._time, _time) &&
             const DeepCollectionEquality()
-                .equals(other._temperature_2m, _temperature_2m));
+                .equals(other._temperature_2m, _temperature_2m) &&
+            const DeepCollectionEquality()
+                .equals(other._weather_code, _weather_code));
   }
 
   @JsonKey(ignore: true)
@@ -156,73 +527,79 @@ class _$HourlyDataImpl implements _HourlyData {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_time),
-      const DeepCollectionEquality().hash(_temperature_2m));
+      const DeepCollectionEquality().hash(_temperature_2m),
+      const DeepCollectionEquality().hash(_weather_code));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HourlyDataImplCopyWith<_$HourlyDataImpl> get copyWith =>
-      __$$HourlyDataImplCopyWithImpl<_$HourlyDataImpl>(this, _$identity);
+  _$$HourlyDataResponseImplCopyWith<_$HourlyDataResponseImpl> get copyWith =>
+      __$$HourlyDataResponseImplCopyWithImpl<_$HourlyDataResponseImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$HourlyDataImplToJson(
+    return _$$HourlyDataResponseImplToJson(
       this,
     );
   }
 }
 
-abstract class _HourlyData implements HourlyData {
-  factory _HourlyData(
+abstract class _HourlyDataResponse implements HourlyDataResponse {
+  factory _HourlyDataResponse(
       {final List<String>? time,
-      final List<double>? temperature_2m}) = _$HourlyDataImpl;
+      final List<double>? temperature_2m,
+      final List<int>? weather_code}) = _$HourlyDataResponseImpl;
 
-  factory _HourlyData.fromJson(Map<String, dynamic> json) =
-      _$HourlyDataImpl.fromJson;
+  factory _HourlyDataResponse.fromJson(Map<String, dynamic> json) =
+      _$HourlyDataResponseImpl.fromJson;
 
   @override
   List<String>? get time;
   @override
   List<double>? get temperature_2m;
   @override
+  List<int>? get weather_code;
+  @override
   @JsonKey(ignore: true)
-  _$$HourlyDataImplCopyWith<_$HourlyDataImpl> get copyWith =>
+  _$$HourlyDataResponseImplCopyWith<_$HourlyDataResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-DailyData _$DailyDataFromJson(Map<String, dynamic> json) {
-  return _DailyData.fromJson(json);
+DailyDataResponse _$DailyDataResponseFromJson(Map<String, dynamic> json) {
+  return _DailyDataResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DailyData {
+mixin _$DailyDataResponse {
   List<String>? get time => throw _privateConstructorUsedError;
   List<double>? get temperature_2m_min => throw _privateConstructorUsedError;
   List<double>? get temperature_2m_max => throw _privateConstructorUsedError;
-  List<String>? get weather_code => throw _privateConstructorUsedError;
+  List<int>? get weather_code => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DailyDataCopyWith<DailyData> get copyWith =>
+  $DailyDataResponseCopyWith<DailyDataResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DailyDataCopyWith<$Res> {
-  factory $DailyDataCopyWith(DailyData value, $Res Function(DailyData) then) =
-      _$DailyDataCopyWithImpl<$Res, DailyData>;
+abstract class $DailyDataResponseCopyWith<$Res> {
+  factory $DailyDataResponseCopyWith(
+          DailyDataResponse value, $Res Function(DailyDataResponse) then) =
+      _$DailyDataResponseCopyWithImpl<$Res, DailyDataResponse>;
   @useResult
   $Res call(
       {List<String>? time,
       List<double>? temperature_2m_min,
       List<double>? temperature_2m_max,
-      List<String>? weather_code});
+      List<int>? weather_code});
 }
 
 /// @nodoc
-class _$DailyDataCopyWithImpl<$Res, $Val extends DailyData>
-    implements $DailyDataCopyWith<$Res> {
-  _$DailyDataCopyWithImpl(this._value, this._then);
+class _$DailyDataResponseCopyWithImpl<$Res, $Val extends DailyDataResponse>
+    implements $DailyDataResponseCopyWith<$Res> {
+  _$DailyDataResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -253,32 +630,32 @@ class _$DailyDataCopyWithImpl<$Res, $Val extends DailyData>
       weather_code: freezed == weather_code
           ? _value.weather_code
           : weather_code // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<int>?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$DailyDataImplCopyWith<$Res>
-    implements $DailyDataCopyWith<$Res> {
-  factory _$$DailyDataImplCopyWith(
-          _$DailyDataImpl value, $Res Function(_$DailyDataImpl) then) =
-      __$$DailyDataImplCopyWithImpl<$Res>;
+abstract class _$$DailyDataResponseImplCopyWith<$Res>
+    implements $DailyDataResponseCopyWith<$Res> {
+  factory _$$DailyDataResponseImplCopyWith(_$DailyDataResponseImpl value,
+          $Res Function(_$DailyDataResponseImpl) then) =
+      __$$DailyDataResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {List<String>? time,
       List<double>? temperature_2m_min,
       List<double>? temperature_2m_max,
-      List<String>? weather_code});
+      List<int>? weather_code});
 }
 
 /// @nodoc
-class __$$DailyDataImplCopyWithImpl<$Res>
-    extends _$DailyDataCopyWithImpl<$Res, _$DailyDataImpl>
-    implements _$$DailyDataImplCopyWith<$Res> {
-  __$$DailyDataImplCopyWithImpl(
-      _$DailyDataImpl _value, $Res Function(_$DailyDataImpl) _then)
+class __$$DailyDataResponseImplCopyWithImpl<$Res>
+    extends _$DailyDataResponseCopyWithImpl<$Res, _$DailyDataResponseImpl>
+    implements _$$DailyDataResponseImplCopyWith<$Res> {
+  __$$DailyDataResponseImplCopyWithImpl(_$DailyDataResponseImpl _value,
+      $Res Function(_$DailyDataResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -289,7 +666,7 @@ class __$$DailyDataImplCopyWithImpl<$Res>
     Object? temperature_2m_max = freezed,
     Object? weather_code = freezed,
   }) {
-    return _then(_$DailyDataImpl(
+    return _then(_$DailyDataResponseImpl(
       time: freezed == time
           ? _value._time
           : time // ignore: cast_nullable_to_non_nullable
@@ -305,26 +682,26 @@ class __$$DailyDataImplCopyWithImpl<$Res>
       weather_code: freezed == weather_code
           ? _value._weather_code
           : weather_code // ignore: cast_nullable_to_non_nullable
-              as List<String>?,
+              as List<int>?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$DailyDataImpl implements _DailyData {
-  _$DailyDataImpl(
+class _$DailyDataResponseImpl implements _DailyDataResponse {
+  _$DailyDataResponseImpl(
       {final List<String>? time,
       final List<double>? temperature_2m_min,
       final List<double>? temperature_2m_max,
-      final List<String>? weather_code})
+      final List<int>? weather_code})
       : _time = time,
         _temperature_2m_min = temperature_2m_min,
         _temperature_2m_max = temperature_2m_max,
         _weather_code = weather_code;
 
-  factory _$DailyDataImpl.fromJson(Map<String, dynamic> json) =>
-      _$$DailyDataImplFromJson(json);
+  factory _$DailyDataResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DailyDataResponseImplFromJson(json);
 
   final List<String>? _time;
   @override
@@ -358,9 +735,9 @@ class _$DailyDataImpl implements _DailyData {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<String>? _weather_code;
+  final List<int>? _weather_code;
   @override
-  List<String>? get weather_code {
+  List<int>? get weather_code {
     final value = _weather_code;
     if (value == null) return null;
     if (_weather_code is EqualUnmodifiableListView) return _weather_code;
@@ -370,14 +747,14 @@ class _$DailyDataImpl implements _DailyData {
 
   @override
   String toString() {
-    return 'DailyData(time: $time, temperature_2m_min: $temperature_2m_min, temperature_2m_max: $temperature_2m_max, weather_code: $weather_code)';
+    return 'DailyDataResponse(time: $time, temperature_2m_min: $temperature_2m_min, temperature_2m_max: $temperature_2m_max, weather_code: $weather_code)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DailyDataImpl &&
+            other is _$DailyDataResponseImpl &&
             const DeepCollectionEquality().equals(other._time, _time) &&
             const DeepCollectionEquality()
                 .equals(other._temperature_2m_min, _temperature_2m_min) &&
@@ -399,26 +776,27 @@ class _$DailyDataImpl implements _DailyData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DailyDataImplCopyWith<_$DailyDataImpl> get copyWith =>
-      __$$DailyDataImplCopyWithImpl<_$DailyDataImpl>(this, _$identity);
+  _$$DailyDataResponseImplCopyWith<_$DailyDataResponseImpl> get copyWith =>
+      __$$DailyDataResponseImplCopyWithImpl<_$DailyDataResponseImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DailyDataImplToJson(
+    return _$$DailyDataResponseImplToJson(
       this,
     );
   }
 }
 
-abstract class _DailyData implements DailyData {
-  factory _DailyData(
+abstract class _DailyDataResponse implements DailyDataResponse {
+  factory _DailyDataResponse(
       {final List<String>? time,
       final List<double>? temperature_2m_min,
       final List<double>? temperature_2m_max,
-      final List<String>? weather_code}) = _$DailyDataImpl;
+      final List<int>? weather_code}) = _$DailyDataResponseImpl;
 
-  factory _DailyData.fromJson(Map<String, dynamic> json) =
-      _$DailyDataImpl.fromJson;
+  factory _DailyDataResponse.fromJson(Map<String, dynamic> json) =
+      _$DailyDataResponseImpl.fromJson;
 
   @override
   List<String>? get time;
@@ -427,10 +805,10 @@ abstract class _DailyData implements DailyData {
   @override
   List<double>? get temperature_2m_max;
   @override
-  List<String>? get weather_code;
+  List<int>? get weather_code;
   @override
   @JsonKey(ignore: true)
-  _$$DailyDataImplCopyWith<_$DailyDataImpl> get copyWith =>
+  _$$DailyDataResponseImplCopyWith<_$DailyDataResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -441,7 +819,7 @@ HourlyForecastResponse _$HourlyForecastResponseFromJson(
 
 /// @nodoc
 mixin _$HourlyForecastResponse {
-  HourlyData? get hourly => throw _privateConstructorUsedError;
+  HourlyDataResponse? get hourly => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -455,9 +833,9 @@ abstract class $HourlyForecastResponseCopyWith<$Res> {
           $Res Function(HourlyForecastResponse) then) =
       _$HourlyForecastResponseCopyWithImpl<$Res, HourlyForecastResponse>;
   @useResult
-  $Res call({HourlyData? hourly});
+  $Res call({HourlyDataResponse? hourly});
 
-  $HourlyDataCopyWith<$Res>? get hourly;
+  $HourlyDataResponseCopyWith<$Res>? get hourly;
 }
 
 /// @nodoc
@@ -480,18 +858,18 @@ class _$HourlyForecastResponseCopyWithImpl<$Res,
       hourly: freezed == hourly
           ? _value.hourly
           : hourly // ignore: cast_nullable_to_non_nullable
-              as HourlyData?,
+              as HourlyDataResponse?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $HourlyDataCopyWith<$Res>? get hourly {
+  $HourlyDataResponseCopyWith<$Res>? get hourly {
     if (_value.hourly == null) {
       return null;
     }
 
-    return $HourlyDataCopyWith<$Res>(_value.hourly!, (value) {
+    return $HourlyDataResponseCopyWith<$Res>(_value.hourly!, (value) {
       return _then(_value.copyWith(hourly: value) as $Val);
     });
   }
@@ -506,10 +884,10 @@ abstract class _$$HourlyForecastResponseImplCopyWith<$Res>
       __$$HourlyForecastResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({HourlyData? hourly});
+  $Res call({HourlyDataResponse? hourly});
 
   @override
-  $HourlyDataCopyWith<$Res>? get hourly;
+  $HourlyDataResponseCopyWith<$Res>? get hourly;
 }
 
 /// @nodoc
@@ -531,7 +909,7 @@ class __$$HourlyForecastResponseImplCopyWithImpl<$Res>
       hourly: freezed == hourly
           ? _value.hourly
           : hourly // ignore: cast_nullable_to_non_nullable
-              as HourlyData?,
+              as HourlyDataResponse?,
     ));
   }
 }
@@ -545,7 +923,7 @@ class _$HourlyForecastResponseImpl implements _HourlyForecastResponse {
       _$$HourlyForecastResponseImplFromJson(json);
 
   @override
-  final HourlyData? hourly;
+  final HourlyDataResponse? hourly;
 
   @override
   String toString() {
@@ -580,14 +958,14 @@ class _$HourlyForecastResponseImpl implements _HourlyForecastResponse {
 }
 
 abstract class _HourlyForecastResponse implements HourlyForecastResponse {
-  factory _HourlyForecastResponse({final HourlyData? hourly}) =
+  factory _HourlyForecastResponse({final HourlyDataResponse? hourly}) =
       _$HourlyForecastResponseImpl;
 
   factory _HourlyForecastResponse.fromJson(Map<String, dynamic> json) =
       _$HourlyForecastResponseImpl.fromJson;
 
   @override
-  HourlyData? get hourly;
+  HourlyDataResponse? get hourly;
   @override
   @JsonKey(ignore: true)
   _$$HourlyForecastResponseImplCopyWith<_$HourlyForecastResponseImpl>
@@ -601,7 +979,7 @@ DailyForecastResponse _$DailyForecastResponseFromJson(
 
 /// @nodoc
 mixin _$DailyForecastResponse {
-  DailyData? get hourly => throw _privateConstructorUsedError;
+  DailyDataResponse? get daily => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -615,9 +993,9 @@ abstract class $DailyForecastResponseCopyWith<$Res> {
           $Res Function(DailyForecastResponse) then) =
       _$DailyForecastResponseCopyWithImpl<$Res, DailyForecastResponse>;
   @useResult
-  $Res call({DailyData? hourly});
+  $Res call({DailyDataResponse? daily});
 
-  $DailyDataCopyWith<$Res>? get hourly;
+  $DailyDataResponseCopyWith<$Res>? get daily;
 }
 
 /// @nodoc
@@ -634,25 +1012,25 @@ class _$DailyForecastResponseCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hourly = freezed,
+    Object? daily = freezed,
   }) {
     return _then(_value.copyWith(
-      hourly: freezed == hourly
-          ? _value.hourly
-          : hourly // ignore: cast_nullable_to_non_nullable
-              as DailyData?,
+      daily: freezed == daily
+          ? _value.daily
+          : daily // ignore: cast_nullable_to_non_nullable
+              as DailyDataResponse?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $DailyDataCopyWith<$Res>? get hourly {
-    if (_value.hourly == null) {
+  $DailyDataResponseCopyWith<$Res>? get daily {
+    if (_value.daily == null) {
       return null;
     }
 
-    return $DailyDataCopyWith<$Res>(_value.hourly!, (value) {
-      return _then(_value.copyWith(hourly: value) as $Val);
+    return $DailyDataResponseCopyWith<$Res>(_value.daily!, (value) {
+      return _then(_value.copyWith(daily: value) as $Val);
     });
   }
 }
@@ -666,10 +1044,10 @@ abstract class _$$DailyForecastResponseImplCopyWith<$Res>
       __$$DailyForecastResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DailyData? hourly});
+  $Res call({DailyDataResponse? daily});
 
   @override
-  $DailyDataCopyWith<$Res>? get hourly;
+  $DailyDataResponseCopyWith<$Res>? get daily;
 }
 
 /// @nodoc
@@ -684,13 +1062,13 @@ class __$$DailyForecastResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hourly = freezed,
+    Object? daily = freezed,
   }) {
     return _then(_$DailyForecastResponseImpl(
-      hourly: freezed == hourly
-          ? _value.hourly
-          : hourly // ignore: cast_nullable_to_non_nullable
-              as DailyData?,
+      daily: freezed == daily
+          ? _value.daily
+          : daily // ignore: cast_nullable_to_non_nullable
+              as DailyDataResponse?,
     ));
   }
 }
@@ -698,17 +1076,17 @@ class __$$DailyForecastResponseImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$DailyForecastResponseImpl implements _DailyForecastResponse {
-  _$DailyForecastResponseImpl({this.hourly});
+  _$DailyForecastResponseImpl({this.daily});
 
   factory _$DailyForecastResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$DailyForecastResponseImplFromJson(json);
 
   @override
-  final DailyData? hourly;
+  final DailyDataResponse? daily;
 
   @override
   String toString() {
-    return 'DailyForecastResponse(hourly: $hourly)';
+    return 'DailyForecastResponse(daily: $daily)';
   }
 
   @override
@@ -716,12 +1094,12 @@ class _$DailyForecastResponseImpl implements _DailyForecastResponse {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DailyForecastResponseImpl &&
-            (identical(other.hourly, hourly) || other.hourly == hourly));
+            (identical(other.daily, daily) || other.daily == daily));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, hourly);
+  int get hashCode => Object.hash(runtimeType, daily);
 
   @JsonKey(ignore: true)
   @override
@@ -739,14 +1117,14 @@ class _$DailyForecastResponseImpl implements _DailyForecastResponse {
 }
 
 abstract class _DailyForecastResponse implements DailyForecastResponse {
-  factory _DailyForecastResponse({final DailyData? hourly}) =
+  factory _DailyForecastResponse({final DailyDataResponse? daily}) =
       _$DailyForecastResponseImpl;
 
   factory _DailyForecastResponse.fromJson(Map<String, dynamic> json) =
       _$DailyForecastResponseImpl.fromJson;
 
   @override
-  DailyData? get hourly;
+  DailyDataResponse? get daily;
   @override
   @JsonKey(ignore: true)
   _$$DailyForecastResponseImplCopyWith<_$DailyForecastResponseImpl>

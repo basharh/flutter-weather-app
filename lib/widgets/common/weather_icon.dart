@@ -9,26 +9,38 @@ enum WeatherCondition {
 }
 
 class WeatherIcon extends StatelessWidget {
-  final WeatherCondition condition;
+  final int weatherCode;
 
   const WeatherIcon({
     super.key,
-    required this.condition,
+    required this.weatherCode,
   });
 
   @override
   Widget build(BuildContext context) {
-    return FittedBox(
-      fit: BoxFit.contain,
-      child: Icon(
-        switch (condition) {
-          WeatherCondition.thunderstorm => Icons.flash_on,
-          WeatherCondition.drizzle => Icons.grain,
-          WeatherCondition.rain => Icons.beach_access,
-          WeatherCondition.snow => Icons.ac_unit,
-          WeatherCondition.clear => Icons.wb_sunny,
-        },
-      ),
+    return Column(
+      children: [
+        //Text(weatherCode.toString()),
+        Expanded(
+          child: FittedBox(
+            fit: BoxFit.contain,
+            child: Icon(
+              switch (weatherCode) {
+                3 => Icons.wb_cloudy,
+                >= 0 && < 20 => Icons.wb_sunny, // clear
+                >= 20 && < 30 => Icons.snowing, // drizzle
+                >= 30 && < 40 => Icons.air,
+                >= 40 && < 50 => Icons.foggy, // fog or ice fog
+                >= 50 && < 60 => Icons.grain, // drizzle
+                >= 60 && < 70 => Icons.thunderstorm, // rain
+                >= 70 && < 80 => Icons.wb_sunny, // clear
+                >= 80 && < 100 => Icons.thunderstorm,
+                _ => Icons.grain,
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

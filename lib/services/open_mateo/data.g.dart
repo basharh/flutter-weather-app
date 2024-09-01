@@ -6,22 +6,29 @@ part of 'data.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$HourlyDataImpl _$$HourlyDataImplFromJson(Map<String, dynamic> json) =>
-    _$HourlyDataImpl(
+_$HourlyDataResponseImpl _$$HourlyDataResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$HourlyDataResponseImpl(
       time: (json['time'] as List<dynamic>?)?.map((e) => e as String).toList(),
       temperature_2m: (json['temperature_2m'] as List<dynamic>?)
           ?.map((e) => (e as num).toDouble())
           .toList(),
+      weather_code: (json['weather_code'] as List<dynamic>?)
+          ?.map((e) => (e as num).toInt())
+          .toList(),
     );
 
-Map<String, dynamic> _$$HourlyDataImplToJson(_$HourlyDataImpl instance) =>
+Map<String, dynamic> _$$HourlyDataResponseImplToJson(
+        _$HourlyDataResponseImpl instance) =>
     <String, dynamic>{
       'time': instance.time,
       'temperature_2m': instance.temperature_2m,
+      'weather_code': instance.weather_code,
     };
 
-_$DailyDataImpl _$$DailyDataImplFromJson(Map<String, dynamic> json) =>
-    _$DailyDataImpl(
+_$DailyDataResponseImpl _$$DailyDataResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$DailyDataResponseImpl(
       time: (json['time'] as List<dynamic>?)?.map((e) => e as String).toList(),
       temperature_2m_min: (json['temperature_2m_min'] as List<dynamic>?)
           ?.map((e) => (e as num).toDouble())
@@ -30,11 +37,12 @@ _$DailyDataImpl _$$DailyDataImplFromJson(Map<String, dynamic> json) =>
           ?.map((e) => (e as num).toDouble())
           .toList(),
       weather_code: (json['weather_code'] as List<dynamic>?)
-          ?.map((e) => e as String)
+          ?.map((e) => (e as num).toInt())
           .toList(),
     );
 
-Map<String, dynamic> _$$DailyDataImplToJson(_$DailyDataImpl instance) =>
+Map<String, dynamic> _$$DailyDataResponseImplToJson(
+        _$DailyDataResponseImpl instance) =>
     <String, dynamic>{
       'time': instance.time,
       'temperature_2m_min': instance.temperature_2m_min,
@@ -47,7 +55,7 @@ _$HourlyForecastResponseImpl _$$HourlyForecastResponseImplFromJson(
     _$HourlyForecastResponseImpl(
       hourly: json['hourly'] == null
           ? null
-          : HourlyData.fromJson(json['hourly'] as Map<String, dynamic>),
+          : HourlyDataResponse.fromJson(json['hourly'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$HourlyForecastResponseImplToJson(
@@ -59,13 +67,13 @@ Map<String, dynamic> _$$HourlyForecastResponseImplToJson(
 _$DailyForecastResponseImpl _$$DailyForecastResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$DailyForecastResponseImpl(
-      hourly: json['hourly'] == null
+      daily: json['daily'] == null
           ? null
-          : DailyData.fromJson(json['hourly'] as Map<String, dynamic>),
+          : DailyDataResponse.fromJson(json['daily'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$DailyForecastResponseImplToJson(
         _$DailyForecastResponseImpl instance) =>
     <String, dynamic>{
-      'hourly': instance.hourly,
+      'daily': instance.daily,
     };

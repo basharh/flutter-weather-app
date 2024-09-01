@@ -1,20 +1,47 @@
 import 'package:dio/dio.dart';
 import 'package:weather/services/open_mateo/data.dart';
+import 'package:weather/services/open_mateo/open_mateo_url.dart';
 
 class OpenMateoService {
   final Dio dio;
+  final openMateoUrlBuilder = OpenMateoUrlBuilder();
 
   OpenMateoService(this.dio);
 
-  Future<HourlyForecastResponse> fetchHourly() async {
-    final response = await dio.get(
-        'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m');
-    return HourlyForecastResponse.fromJson(response.data);
+  Future<Map<String, HourlyData>> fetchHourly() async {
+    final response = await dio.get(openMateoUrlBuilder.getHourlyDataUrl());
+    final data = HourlyForecastResponse.fromJson(response.data);
+
+    final result = <String, HourlyData>{};
+
+    for (var i = 0; i < data.hourly!.time!.length; i++) {
+      result[data.hourly!.time![i]] = HourlyData(
+        time: data.hourly!.time![i],
+        temperature_2m: data.hourly!.temperature_2m?[i] ?? 0,
+        weather_code: data.hourly!.weather_code?[i] ?? 0,
+      );
+    }
+
+    return result;
   }
 
-  Future<DailyForecastResponse> fetchDaily() async {
-    final response = await dio.get(
-        'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_min,temperature_2m_max,weather_code');
-    return DailyForecastResponse.fromJson(response.data);
+  Future<Map<String, DailyData>> fetchDaily() async {
+    print('fetchDaily: ${openMateoUrlBuilder.getDailyDataUrl()}');
+    final response = await dio.get(openMateoUrlBuilder.getDailyDataUrl());
+
+    final data = DailyForecastResponse.fromJson(response.data);
+
+    final result = <String, DailyData>{};
+
+    for (var i = 0; i < data.daily!.time!.length; i++) {
+      result[data.daily!.time![i]] = DailyData(
+        time: data.daily!.time![i],
+        temperature_2m_min: data.daily!.temperature_2m_min?[i] ?? 0,
+        temperature_2m_max: data.daily!.temperature_2m_max?[i] ?? 0,
+        weather_code: data.daily!.weather_code?[i] ?? 0,
+      );
+    }
+
+    return result;
   }
 }

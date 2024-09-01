@@ -10,6 +10,7 @@ class TemperatureText extends StatelessWidget {
     return Container(
       child: Text(
         '${temperature.toStringAsFixed(1)}°',
+        textAlign: TextAlign.center,
         style: const TextStyle(),
       ),
     );
