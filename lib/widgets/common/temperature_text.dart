@@ -8,10 +8,12 @@ class TemperatureText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(
-        '${temperature.toStringAsFixed(1)}°',
-        textAlign: TextAlign.center,
-        style: const TextStyle(),
+      child: FittedBox(
+        child: Text(
+          '${temperature.toStringAsFixed(1)}°',
+          textAlign: TextAlign.center,
+          style: const TextStyle(),
+        ),
       ),
     );
   }

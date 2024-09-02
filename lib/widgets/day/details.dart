@@ -5,26 +5,24 @@ class Details extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Column(
-        children: <Widget>[
-          Row(
-            children: [
-              Text('Gotham'),
-              Text('Today 00:32 PM'),
-            ],
-          ),
-          Text('32°'),
-          Text('Mostly Cloudy'),
-          Row(
-            children: [
-              Text('Air Pressure: 1013 hPa'),
-              Text('Humidity: 50%'),
-              Text('Wind: 5 km/h'),
-            ],
-          ),
-        ],
-      ),
+    return const Column(
+      children: <Widget>[
+        Row(
+          children: [
+            Text('Gotham'),
+            Text('Today 00:32 PM'),
+          ],
+        ),
+        Text('32°'),
+        Text('Mostly Cloudy'),
+        Row(
+          children: [
+            Text('Air Pressure: 1013 hPa'),
+            Text('Humidity: 50%'),
+            Text('Wind: 5 km/h'),
+          ],
+        ),
+      ],
     );
   }
 }

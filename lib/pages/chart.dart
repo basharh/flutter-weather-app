@@ -2,21 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather/providers/services/open_mateo.dart';
 import 'package:weather/services/open_mateo/data.dart';
-import 'package:weather/widgets/chart/hourly_weather_chart.dart';
+import 'package:weather/widgets/chart/weekly_weather_chart.dart';
 import 'package:weather/widgets/common/layout/layout.dart';
-import 'package:weather/widgets/week/hours_row.dart';
 
-class DayPage extends ConsumerWidget {
-  const DayPage({super.key});
+class ChartPage extends ConsumerWidget {
+  const ChartPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final openMateoService = ref.read(openMateoServiceProvider);
 
     return Layout(
-      title: 'Day at a Glance',
       child: FutureBuilder(
-        future: openMateoService.fetchHourly(),
+        future: openMateoService.fetchDaily(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -30,20 +28,15 @@ class DayPage extends ConsumerWidget {
             );
           }
 
-          final hourlyData = snapshot.data as Map<String, HourlyData>;
-
           return Column(
-            children: <Widget>[
-              HoursRow(hourlyData: hourlyData),
-              const SizedBox(height: 20),
-              //Details(),
-              //SizedBox(height: 20),
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
               Expanded(
-                child: FractionallySizedBox(
-                  heightFactor: 0.6,
-                  child: HourlyWeatherChart(hourlyData: hourlyData),
+                child: WeeklyWeatherChart(
+                  dailyData: snapshot.data as Map<String, DailyData>,
                 ),
               ),
+              Expanded(child: Container()),
             ],
           );
         },

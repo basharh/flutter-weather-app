@@ -12,19 +12,22 @@ class DayAndDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final d = DateTime.parse(date);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        FittedBox(
-          child: Center(
-            child: Text(
-              '${DateFormat('EEEE').format(d)},\n${DateFormat('MMM d').format(d)}',
-              textAlign: TextAlign.left,
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          FittedBox(
+            child: Center(
+              child: Text(
+                '${DateFormat('EEEE').format(d)}, ${DateFormat('MMM d').format(d)}',
+                textAlign: TextAlign.left,
+                style: const TextStyle(fontSize: 10),
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
