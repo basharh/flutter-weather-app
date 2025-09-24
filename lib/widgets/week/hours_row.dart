@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather/services/open_mateo/data.dart';
-import 'package:weather/widgets/common/hourly_weather/hourly_weather.dart';
+import 'package:weather/widgets/common/hour_weather/hour_weather.dart';
 
 class HoursRow extends StatelessWidget {
   final Map<String, HourlyData> hourlyData;
@@ -19,7 +19,7 @@ class HoursRow extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         children: hourlyData.entries
             .map(
-              (entry) => HourlyWeather(
+              (entry) => HourWeather(
                 hour: entry.key,
                 hourlyData: entry.value,
               ),

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather/pages/chart.dart';
+
 import 'package:weather/pages/day.dart';
 import 'package:weather/pages/week.dart';
+import 'package:weather/utils/theme_data.dart';
 
 void main() {
   runApp(
@@ -21,10 +23,7 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Weather App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: themeData,
       initialRoute: initialRoute,
       routes: {
         '/week': (_) => const WeekPage(),

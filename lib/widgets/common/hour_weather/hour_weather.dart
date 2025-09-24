@@ -4,12 +4,12 @@ import 'package:weather/widgets/common/temperature_text.dart';
 import 'package:weather/widgets/common/time.dart';
 import 'package:weather/widgets/common/weather_icon.dart';
 
-/// A widget that displays the hourly weather in a column
-class HourlyWeather extends StatelessWidget {
+/// A widget that displays the weather for a specific hour.
+class HourWeather extends StatelessWidget {
   final String hour;
   final HourlyData hourlyData;
 
-  const HourlyWeather({
+  const HourWeather({
     super.key,
     required this.hour,
     required this.hourlyData,
@@ -29,7 +29,7 @@ class HourlyWeather extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           TimeText(time: hour.substring(11)),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Expanded(
             child: WeatherIcon(
               weatherCode: hourlyData.weather_code ?? 0,

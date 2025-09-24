@@ -33,7 +33,7 @@ void main() {
       ));
 
       await tester.fling(
-        find.byType(HourlyWeather).at(1),
+        find.byType(HourWeather).at(1),
         const Offset(-300, 0),
         3000,
       );
@@ -41,8 +41,8 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(
-        tester.widget(find.byType(HourlyWeather).last),
-        isA<HourlyWeather>().having((t) => t.index, 'index', 23),
+        tester.widget(find.byType(HourWeather).last),
+        isA<HourWeather>().having((t) => t.index, 'index', 23),
       );
     });
   });
