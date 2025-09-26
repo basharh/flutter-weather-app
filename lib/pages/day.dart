@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather/providers/services/open_mateo.dart';
 import 'package:weather/services/open_mateo/data.dart';
 import 'package:weather/widgets/chart/hourly_weather_chart.dart';
+import 'package:weather/widgets/common/hours_row.dart';
 import 'package:weather/widgets/common/layout/layout.dart';
-import 'package:weather/widgets/week/hours_row.dart';
 
 class DayPage extends ConsumerWidget {
   const DayPage({super.key});

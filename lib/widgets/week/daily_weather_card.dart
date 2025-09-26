@@ -12,32 +12,31 @@ class DayAndDate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final d = DateTime.parse(date);
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          FittedBox(
-            child: Center(
-              child: Text(
-                '${DateFormat('EEEE').format(d)}, ${DateFormat('MMM d').format(d)}',
-                textAlign: TextAlign.left,
-                style: const TextStyle(fontSize: 10),
-              ),
-            ),
-          ),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Text(
+          DateFormat('EEEE').format(d),
+          textAlign: TextAlign.left,
+          style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+        ),
+        Text(
+          DateFormat('d MMM').format(d),
+          textAlign: TextAlign.left,
+          style: const TextStyle(fontSize: 10),
+        ),
+      ],
     );
   }
 }
 
-/// A widget that displays the daily weather in a row
-class DailyWeather extends StatelessWidget {
+/// A widget that displays the daily weather in a card
+class DailyWeatherCard extends StatelessWidget {
   final String day;
   final DailyData dailyData;
 
-  const DailyWeather({
+  const DailyWeatherCard({
     super.key,
     required this.day,
     required this.dailyData,
@@ -56,6 +55,7 @@ class DailyWeather extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Expanded(
             flex: 1,

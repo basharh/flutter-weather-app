@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather/services/open_mateo/data.dart';
-import 'package:weather/widgets/week/day.dart';
+import 'package:weather/widgets/week/daily_weather_card.dart';
 
 class DaysColumn extends StatelessWidget {
   final Map<String, DailyData> dailyData;
@@ -14,7 +14,7 @@ class DaysColumn extends StatelessWidget {
         children: dailyData.entries
             .map(
               (entry) => Expanded(
-                child: DailyWeather(
+                child: DailyWeatherCard(
                   day: entry.key,
                   dailyData: entry.value,
                 ),

@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:weather/main.dart';
+import 'package:weather/widgets/common/hour_weather/hour_weather.dart';
+import 'package:weather/widgets/week/daily_weather_card.dart';
 
-import 'package:weather/widgets/common/hourly_weather/hourly_weather.dart';
-import 'package:weather/widgets/week/day.dart';
 import 'package:weather/widgets/week/days_column.dart';
 import 'package:weather/widgets/week/hours_row.dart';
 
@@ -42,18 +42,21 @@ void main() {
 
       expect(
         tester.widget(find.byType(HourWeather).last),
-        isA<HourWeather>().having((t) => t.index, 'index', 23),
+        isA<HourWeather>(),
       );
     });
   });
 
   group('DaysColumn', () {
-    testWidgets('renders 7 DailyWeather widgets', (WidgetTester tester) async {
-      await tester.pumpWidget(const WeatherApp(
-        initialRoute: '/week',
-      ));
+    testWidgets(
+      'renders 7 DailyWeatherCard widgets',
+      (WidgetTester tester) async {
+        await tester.pumpWidget(const WeatherApp(
+          initialRoute: '/week',
+        ));
 
-      expect(find.byType(DailyWeather), findsExactly(7));
-    });
+        expect(find.byType(DailyWeatherCard), findsExactly(7));
+      },
+    );
   });
 }

@@ -5,6 +5,7 @@ part 'data.g.dart';
 
 /// Data representation for the the api responses from open mateo
 
+/// temperature data for a single hour
 @freezed
 class HourlyData with _$HourlyData {
   factory HourlyData({
@@ -14,6 +15,7 @@ class HourlyData with _$HourlyData {
   }) = _HourlyData;
 }
 
+/// temperature data for a single day
 @freezed
 class DailyData with _$DailyData {
   factory DailyData({

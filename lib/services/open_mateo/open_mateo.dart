@@ -26,7 +26,6 @@ class OpenMateoService {
   }
 
   Future<Map<String, DailyData>> fetchDaily() async {
-    print('fetchDaily: ${openMateoUrlBuilder.getDailyDataUrl()}');
     final response = await dio.get(openMateoUrlBuilder.getDailyDataUrl());
 
     final data = DailyForecastResponse.fromJson(response.data);
