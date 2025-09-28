@@ -13,18 +13,18 @@ class DayAndDate extends StatelessWidget {
   Widget build(BuildContext context) {
     final d = DateTime.parse(date);
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
           DateFormat('EEEE').format(d),
           textAlign: TextAlign.left,
-          style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         Text(
           DateFormat('d MMM').format(d),
           textAlign: TextAlign.left,
-          style: const TextStyle(fontSize: 10),
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
       ],
     );
@@ -46,35 +46,37 @@ class DailyWeatherCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final DateTime d = DateTime.parse(day);
 
-    return Container(
-      padding: const EdgeInsets.all(10),
+    return Card(
+      color: Theme.of(context).colorScheme.secondaryContainer,
       margin: const EdgeInsets.all(3),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: DayAndDate(
-              date: DateFormat('yyyy-MM-dd').format(d),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: DayAndDate(
+                date: DateFormat('yyyy-MM-dd').format(d),
+              ),
             ),
-          ),
-          Expanded(
-            flex: 2,
-            child:
-                TemperatureText(temperature: dailyData.temperature_2m_min ?? 0),
-          ),
-          Expanded(
-            flex: 1,
-            child: WeatherIcon(
-              weatherCode: dailyData.weather_code ?? 0,
+            Expanded(
+              flex: 2,
+              child: TemperatureText(
+                temperature: dailyData.temperature_2m_min ?? 0,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
             ),
-          ),
-        ],
+            Expanded(
+              flex: 1,
+              child: WeatherIcon(
+                weatherCode: dailyData.weather_code ?? 0,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

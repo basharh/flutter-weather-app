@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather/providers/services/open_mateo.dart';
 import 'package:weather/services/open_mateo/data.dart';
-import 'package:weather/widgets/chart/weekly_weather_chart.dart';
+import 'package:weather/widgets/common/hours_row.dart';
 import 'package:weather/widgets/common/layout/layout.dart';
 import 'package:weather/widgets/week/days_column.dart';
 
@@ -35,18 +35,32 @@ class WeekPage extends ConsumerWidget {
 
           return Column(
             children: <Widget>[
-              //HoursRow(
-              //hourlyData: snapshot.data?[0] as Map<String, HourlyData>,
-              //),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/day');
+                    },
+                    child: Text(
+                      'Today',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                  ),
+                ],
+              ),
+              HoursRow(
+                hourlyData: snapshot.data?[0] as Map<String, HourlyData>,
+              ),
               DaysColumn(
                 dailyData: snapshot.data?[1] as Map<String, DailyData>,
               ),
-              const SizedBox(height: 20),
-              Expanded(
-                child: WeeklyWeatherChart(
-                  dailyData: snapshot.data?[1] as Map<String, DailyData>,
-                ),
-              ),
+              //const SizedBox(height: 20),
+              //Expanded(
+              //child: WeeklyWeatherChart(
+              //dailyData: snapshot.data?[1] as Map<String, DailyData>,
+              //),
+              //),
             ],
           );
         },

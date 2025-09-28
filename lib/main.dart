@@ -17,7 +17,7 @@ void main() {
 class WeatherApp extends StatelessWidget {
   final String initialRoute;
 
-  const WeatherApp({super.key, this.initialRoute = '/day'});
+  const WeatherApp({super.key, this.initialRoute = '/week'});
 
   @override
   Widget build(BuildContext context) {
