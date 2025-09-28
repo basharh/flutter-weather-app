@@ -17,34 +17,38 @@ class HourWeather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Theme.of(context).colorScheme.secondary,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            TimeText(
-              time: hour.substring(11),
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
+    return Theme(
+      data: Theme.of(context).copyWith(
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Theme.of(context).colorScheme.onSecondary,
+              displayColor: Theme.of(context).colorScheme.onSecondary,
             ),
-            const SizedBox(height: 5),
-            Expanded(
-              child: WeatherIcon(
-                weatherCode: hourlyData.weather_code ?? 0,
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
+        iconTheme: Theme.of(context).iconTheme.copyWith(
+              color: Theme.of(context).colorScheme.onSecondary,
             ),
-            TemperatureText(
-              temperature: hourlyData.temperature_2m ?? 0,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onSecondary,
+      ),
+      child: Card(
+        color: Theme.of(context).colorScheme.secondary,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              TimeText(
+                time: hour.substring(11),
               ),
-            ),
-          ],
+              const SizedBox(height: 5),
+              Expanded(
+                child: WeatherIcon(
+                  weatherCode: hourlyData.weather_code ?? 0,
+                ),
+              ),
+              TemperatureText(
+                temperature: hourlyData.temperature_2m ?? 0,
+              ),
+            ],
+          ),
         ),
       ),
     );
