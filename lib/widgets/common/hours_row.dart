@@ -12,9 +12,6 @@ class HoursRow extends StatelessWidget {
     return Container(
       height: 100,
       padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-      ),
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: hourlyData.entries

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class TemperatureText extends StatelessWidget {
   final double temperature;
-  final double fontSize;
+  final TextStyle? style;
 
   const TemperatureText({
     super.key,
     required this.temperature,
-    this.fontSize = 14,
+    this.style,
   });
 
   @override
@@ -15,7 +15,7 @@ class TemperatureText extends StatelessWidget {
     return Text(
       '${temperature.toStringAsFixed(1)}°',
       textAlign: TextAlign.center,
-      style: TextStyle(fontSize: fontSize),
+      style: Theme.of(context).textTheme.bodySmall?.merge(style),
     );
   }
 }

@@ -17,28 +17,35 @@ class HourWeather extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 80,
-      padding: const EdgeInsets.all(5),
-      margin: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          TimeText(time: hour.substring(11)),
-          const SizedBox(height: 5),
-          Expanded(
-            child: WeatherIcon(
-              weatherCode: hourlyData.weather_code ?? 0,
+    return Card(
+      color: Theme.of(context).colorScheme.secondary,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            TimeText(
+              time: hour.substring(11),
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
             ),
-          ),
-          TemperatureText(
-            temperature: hourlyData.temperature_2m ?? 0,
-          ),
-        ],
+            const SizedBox(height: 5),
+            Expanded(
+              child: WeatherIcon(
+                weatherCode: hourlyData.weather_code ?? 0,
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
+            ),
+            TemperatureText(
+              temperature: hourlyData.temperature_2m ?? 0,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

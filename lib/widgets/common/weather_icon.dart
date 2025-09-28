@@ -11,11 +11,13 @@ enum WeatherCondition {
 class WeatherIcon extends StatelessWidget {
   final int weatherCode;
   final double fontSize;
+  final Color? color;
 
   const WeatherIcon({
     super.key,
     required this.weatherCode,
     this.fontSize = 20,
+    this.color,
   });
 
   @override
@@ -34,6 +36,7 @@ class WeatherIcon extends StatelessWidget {
         _ => Icons.grain,
       },
       size: fontSize,
+      color: color,
     );
   }
 }

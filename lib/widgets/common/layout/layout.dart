@@ -15,9 +15,7 @@ class Layout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
         title: Text(
           title,
           style: Theme.of(context).textTheme.headlineSmall,
