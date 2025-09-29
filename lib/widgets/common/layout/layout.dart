@@ -1,4 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:weather/providers/brightness_mode.dart';
+
+class LightDarkSwitcherIcon extends ConsumerWidget {
+  const LightDarkSwitcherIcon({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return IconButton(
+      icon: Icon(
+        Theme.of(context).brightness == Brightness.dark
+            ? Icons.dark_mode
+            : Icons.light_mode,
+      ),
+      onPressed: () {
+        ref.read(brightness.notifier).toggle();
+      },
+      tooltip: 'Switch Light/Dark Mode',
+    );
+  }
+}
 
 class Layout extends StatelessWidget {
   final Widget child;
@@ -20,7 +41,10 @@ class Layout extends StatelessWidget {
           title,
           style: Theme.of(context).textTheme.headlineSmall,
         ),
-        actions: actions,
+        actions: [
+          ...?actions,
+          LightDarkSwitcherIcon(),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20)
