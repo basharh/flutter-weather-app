@@ -43,7 +43,7 @@ class Layout extends StatelessWidget {
         ),
         actions: [
           ...?actions,
-          LightDarkSwitcherIcon(),
+          const LightDarkSwitcherIcon(),
         ],
       ),
       body: Container(
