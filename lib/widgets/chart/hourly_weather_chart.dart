@@ -15,31 +15,25 @@ class HourlyWeatherChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Expanded(
-            child: LineChart(
-              chartData,
-            ),
-          )
-        ],
+      child: LineChart(
+        getChartData(context),
       ),
     );
   }
 
-  LineChartData get chartData => LineChartData(
+  LineChartData getChartData(BuildContext context) => LineChartData(
         gridData: const FlGridData(show: false),
         titlesData: titlesData,
         borderData: borderData,
-        lineBarsData: lineBarsData,
+        lineBarsData: getLineBarsData(context),
         minX: 0,
         maxX: 24,
         maxY: 40,
         minY: 0,
       );
 
-  List<LineChartBarData> get lineBarsData => [
-        lineChartBarData,
+  List<LineChartBarData> getLineBarsData(BuildContext context) => [
+        getLineChartBarData(context),
       ];
 
   List<FlSpot> get spots {
@@ -52,10 +46,10 @@ class HourlyWeatherChart extends StatelessWidget {
     }).toList();
   }
 
-  LineChartBarData get lineChartBarData {
+  LineChartBarData getLineChartBarData(BuildContext context) {
     return LineChartBarData(
       isCurved: true,
-      color: Colors.red,
+      color: Theme.of(context).colorScheme.onPrimary,
       barWidth: 2,
       dotData: const FlDotData(show: false),
       belowBarData: BarAreaData(show: false),

@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:weather/services/open_mateo/data.dart';
+import 'package:weather/widgets/chart/hourly_weather_chart.dart';
 
 class DayDetailsCard extends StatelessWidget {
-  const DayDetailsCard({super.key});
+  final Map<String, HourlyData> hourlyData;
+
+  const DayDetailsCard({
+    super.key,
+    required this.hourlyData,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.blue,
+      color: Theme.of(context).colorScheme.secondary,
       child: Theme(
         data: Theme.of(context).copyWith(
           textTheme: Theme.of(context).textTheme.apply(
-                bodyColor: Colors.white,
-                displayColor: Colors.white,
+                bodyColor: Theme.of(context).colorScheme.onSecondary,
+                displayColor: Theme.of(context).colorScheme.onSecondary,
               ),
-          iconTheme: const IconThemeData(
-            color: Colors.white,
+          iconTheme: IconThemeData(
+            color: Theme.of(context).colorScheme.onSecondary,
           ),
         ),
         child: Builder(
@@ -22,6 +29,7 @@ class DayDetailsCard extends StatelessWidget {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -36,7 +44,9 @@ class DayDetailsCard extends StatelessWidget {
                   const Expanded(child: _CurrentTemperature()),
                   const _WeatherConditionsRow(),
                   const SizedBox(height: 16.0),
-                  const _DayWeatherChartCard(),
+                  _DayWeatherChartCard(
+                    hourlyData: hourlyData,
+                  ),
                 ],
               ),
             );
@@ -77,36 +87,49 @@ class _WeatherConditionsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            spacing: 4.0,
+    return Theme(
+      data: Theme.of(context).copyWith(
+        iconTheme: Theme.of(context).iconTheme.copyWith(
+              size: Theme.of(context).textTheme.titleLarge?.fontSize,
+            ),
+      ),
+      child: DefaultTextStyle(
+        style: Theme.of(context).textTheme.bodyMedium!,
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(Icons.cloud_outlined, size: 10),
-              Text(
-                '1013hPa',
-                style: Theme.of(context).textTheme.bodySmall,
+              Row(
+                spacing: 4.0,
+                children: [
+                  Icon(Icons.cloud_outlined),
+                  Text(
+                    '1013hPa',
+                  ),
+                ],
               ),
+              Row(
+                spacing: 4.0,
+                children: [
+                  Icon(Icons.water_drop_outlined),
+                  Text(
+                    '50%',
+                  ),
+                ],
+              ),
+              Row(
+                spacing: 4.0,
+                children: [
+                  Icon(Icons.air_outlined),
+                  Text(
+                    '5 km/h',
+                  ),
+                ],
+              )
             ],
           ),
-          Row(
-            spacing: 4.0,
-            children: [
-              const Icon(Icons.water_drop_outlined, size: 10),
-              Text('50%', style: Theme.of(context).textTheme.bodySmall),
-            ],
-          ),
-          Row(
-            spacing: 4.0,
-            children: [
-              const Icon(Icons.air_outlined, size: 10),
-              Text('5 km/h', style: Theme.of(context).textTheme.bodySmall),
-            ],
-          )
-        ],
+        ),
       ),
     );
   }
@@ -132,16 +155,28 @@ class _Location extends StatelessWidget {
 
 /// A card that displays the weather chart for the day
 class _DayWeatherChartCard extends StatelessWidget {
-  const _DayWeatherChartCard();
+  final Map<String, HourlyData> hourlyData;
+
+  const _DayWeatherChartCard({
+    required this.hourlyData,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        children: [
-          Text('Temperature', style: Theme.of(context).textTheme.titleMedium),
-          const SizedBox(height: 100, child: Placeholder()),
-        ],
+      color: Theme.of(context).colorScheme.secondary.withValues(alpha: 0.3),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Temperature', style: Theme.of(context).textTheme.titleMedium),
+            AspectRatio(
+              aspectRatio: 2,
+              child: HourlyWeatherChart(hourlyData: hourlyData),
+            )
+          ],
+        ),
       ),
     );
   }
