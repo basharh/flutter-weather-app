@@ -55,12 +55,6 @@ class WeekPage extends ConsumerWidget {
               DaysColumn(
                 dailyData: snapshot.data?[1] as Map<String, DailyData>,
               ),
-              //const SizedBox(height: 20),
-              //Expanded(
-              //child: WeeklyWeatherChart(
-              //dailyData: snapshot.data?[1] as Map<String, DailyData>,
-              //),
-              //),
             ],
           );
         },

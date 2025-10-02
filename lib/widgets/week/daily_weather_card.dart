@@ -20,6 +20,7 @@ class DayAndDate extends StatelessWidget {
           DateFormat('EEEE').format(d),
           textAlign: TextAlign.left,
           style: Theme.of(context).textTheme.bodyMedium,
+          overflow: TextOverflow.ellipsis,
         ),
         Text(
           DateFormat('d MMM').format(d),

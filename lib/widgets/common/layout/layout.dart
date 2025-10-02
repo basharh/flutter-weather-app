@@ -2,8 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather/providers/brightness_mode.dart';
 
-class LightDarkSwitcherIcon extends ConsumerWidget {
-  const LightDarkSwitcherIcon({super.key});
+class _MapIconButton extends ConsumerWidget {
+  const _MapIconButton();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return IconButton(
+      icon: const Icon(Icons.map_outlined),
+      onPressed: () {
+        Navigator.pushNamed(context, '/map2');
+      },
+      tooltip: 'Open Map',
+    );
+  }
+}
+
+class _LightDarkSwitcherIcon extends ConsumerWidget {
+  const _LightDarkSwitcherIcon();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -43,7 +58,8 @@ class Layout extends StatelessWidget {
         ),
         actions: [
           ...?actions,
-          const LightDarkSwitcherIcon(),
+          const _LightDarkSwitcherIcon(),
+          const _MapIconButton(),
         ],
       ),
       body: Container(
