@@ -35,7 +35,7 @@ class WeatherBubble extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                place.displayNames?.text ?? 'Unknown',
+                place.displayName?.text ?? 'Unknown',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               Row(

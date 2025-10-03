@@ -169,7 +169,7 @@ Place _$PlaceFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Place {
   PlaceLocation? get location => throw _privateConstructorUsedError;
-  DisplayName? get displayNames => throw _privateConstructorUsedError;
+  DisplayName? get displayName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -181,10 +181,10 @@ abstract class $PlaceCopyWith<$Res> {
   factory $PlaceCopyWith(Place value, $Res Function(Place) then) =
       _$PlaceCopyWithImpl<$Res, Place>;
   @useResult
-  $Res call({PlaceLocation? location, DisplayName? displayNames});
+  $Res call({PlaceLocation? location, DisplayName? displayName});
 
   $PlaceLocationCopyWith<$Res>? get location;
-  $DisplayNameCopyWith<$Res>? get displayNames;
+  $DisplayNameCopyWith<$Res>? get displayName;
 }
 
 /// @nodoc
@@ -201,16 +201,16 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
   @override
   $Res call({
     Object? location = freezed,
-    Object? displayNames = freezed,
+    Object? displayName = freezed,
   }) {
     return _then(_value.copyWith(
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as PlaceLocation?,
-      displayNames: freezed == displayNames
-          ? _value.displayNames
-          : displayNames // ignore: cast_nullable_to_non_nullable
+      displayName: freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as DisplayName?,
     ) as $Val);
   }
@@ -229,13 +229,13 @@ class _$PlaceCopyWithImpl<$Res, $Val extends Place>
 
   @override
   @pragma('vm:prefer-inline')
-  $DisplayNameCopyWith<$Res>? get displayNames {
-    if (_value.displayNames == null) {
+  $DisplayNameCopyWith<$Res>? get displayName {
+    if (_value.displayName == null) {
       return null;
     }
 
-    return $DisplayNameCopyWith<$Res>(_value.displayNames!, (value) {
-      return _then(_value.copyWith(displayNames: value) as $Val);
+    return $DisplayNameCopyWith<$Res>(_value.displayName!, (value) {
+      return _then(_value.copyWith(displayName: value) as $Val);
     });
   }
 }
@@ -247,12 +247,12 @@ abstract class _$$PlaceImplCopyWith<$Res> implements $PlaceCopyWith<$Res> {
       __$$PlaceImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PlaceLocation? location, DisplayName? displayNames});
+  $Res call({PlaceLocation? location, DisplayName? displayName});
 
   @override
   $PlaceLocationCopyWith<$Res>? get location;
   @override
-  $DisplayNameCopyWith<$Res>? get displayNames;
+  $DisplayNameCopyWith<$Res>? get displayName;
 }
 
 /// @nodoc
@@ -267,16 +267,16 @@ class __$$PlaceImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? location = freezed,
-    Object? displayNames = freezed,
+    Object? displayName = freezed,
   }) {
     return _then(_$PlaceImpl(
       location: freezed == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as PlaceLocation?,
-      displayNames: freezed == displayNames
-          ? _value.displayNames
-          : displayNames // ignore: cast_nullable_to_non_nullable
+      displayName: freezed == displayName
+          ? _value.displayName
+          : displayName // ignore: cast_nullable_to_non_nullable
               as DisplayName?,
     ));
   }
@@ -285,7 +285,7 @@ class __$$PlaceImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PlaceImpl implements _Place {
-  _$PlaceImpl({this.location, this.displayNames});
+  _$PlaceImpl({this.location, this.displayName});
 
   factory _$PlaceImpl.fromJson(Map<String, dynamic> json) =>
       _$$PlaceImplFromJson(json);
@@ -293,11 +293,11 @@ class _$PlaceImpl implements _Place {
   @override
   final PlaceLocation? location;
   @override
-  final DisplayName? displayNames;
+  final DisplayName? displayName;
 
   @override
   String toString() {
-    return 'Place(location: $location, displayNames: $displayNames)';
+    return 'Place(location: $location, displayName: $displayName)';
   }
 
   @override
@@ -307,13 +307,13 @@ class _$PlaceImpl implements _Place {
             other is _$PlaceImpl &&
             (identical(other.location, location) ||
                 other.location == location) &&
-            (identical(other.displayNames, displayNames) ||
-                other.displayNames == displayNames));
+            (identical(other.displayName, displayName) ||
+                other.displayName == displayName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, location, displayNames);
+  int get hashCode => Object.hash(runtimeType, location, displayName);
 
   @JsonKey(ignore: true)
   @override
@@ -332,14 +332,14 @@ class _$PlaceImpl implements _Place {
 abstract class _Place implements Place {
   factory _Place(
       {final PlaceLocation? location,
-      final DisplayName? displayNames}) = _$PlaceImpl;
+      final DisplayName? displayName}) = _$PlaceImpl;
 
   factory _Place.fromJson(Map<String, dynamic> json) = _$PlaceImpl.fromJson;
 
   @override
   PlaceLocation? get location;
   @override
-  DisplayName? get displayNames;
+  DisplayName? get displayName;
   @override
   @JsonKey(ignore: true)
   _$$PlaceImplCopyWith<_$PlaceImpl> get copyWith =>

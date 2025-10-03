@@ -24,15 +24,15 @@ _$PlaceImpl _$$PlaceImplFromJson(Map<String, dynamic> json) => _$PlaceImpl(
       location: json['location'] == null
           ? null
           : PlaceLocation.fromJson(json['location'] as Map<String, dynamic>),
-      displayNames: json['displayNames'] == null
+      displayName: json['displayName'] == null
           ? null
-          : DisplayName.fromJson(json['displayNames'] as Map<String, dynamic>),
+          : DisplayName.fromJson(json['displayName'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PlaceImplToJson(_$PlaceImpl instance) =>
     <String, dynamic>{
       'location': instance.location,
-      'displayNames': instance.displayNames,
+      'displayName': instance.displayName,
     };
 
 _$PlaceLocationImpl _$$PlaceLocationImplFromJson(Map<String, dynamic> json) =>

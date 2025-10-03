@@ -17,7 +17,7 @@ class SearchNearbyResponse with _$SearchNearbyResponse {
 class Place with _$Place {
   factory Place({
     PlaceLocation? location,
-    DisplayName? displayNames,
+    DisplayName? displayName,
   }) = _Place;
 
   factory Place.fromJson(Map<String, Object?> json) => _$PlaceFromJson(json);
