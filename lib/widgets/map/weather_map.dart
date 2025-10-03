@@ -30,70 +30,51 @@ class WeatherMapState extends ConsumerState<WeatherMap> {
     zoom: 12,
   );
 
-  static const CameraPosition _kLake = CameraPosition(
-    bearing: 192.8334901395799,
-    target: LatLng(37.43296265331129, -122.08832357078792),
-    tilt: 59.440717697143555,
-    zoom: 19.151926040649414,
-  );
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          GoogleMap(
-            mapType: MapType.normal,
-            initialCameraPosition: _kGooglePlex,
-            onMapCreated: (GoogleMapController controller) async {
-              if (!mounted) return;
+    return Stack(
+      children: [
+        GoogleMap(
+          mapType: MapType.normal,
+          initialCameraPosition: _kGooglePlex,
+          onMapCreated: (GoogleMapController controller) async {
+            if (!mounted) return;
 
-              // sleep
-              await Future.delayed(const Duration(milliseconds: 50));
+            // sleep
+            await Future.delayed(const Duration(milliseconds: 50));
 
-              final googlePlacesService = ref.read(googlePlacesServiceProvider);
+            final googlePlacesService = ref.read(googlePlacesServiceProvider);
 
-              final nearbyPlaces =
-                  await googlePlacesService.fetchNearbyLocalities(
-                37.42796133580664,
-                -122.085749655962,
-              );
+            final nearbyPlaces =
+                await googlePlacesService.fetchNearbyLocalities(
+              37.42796133580664,
+              -122.085749655962,
+            );
 
-              final placesWithWeatherAndCoords = await fetchWeatherForPlaces(
-                nearbyPlaces,
-                ref.read(openMateoServiceProvider),
-                controller,
-              );
+            final placesWithWeatherAndCoords = await fetchWeatherForPlaces(
+              nearbyPlaces,
+              ref.read(openMateoServiceProvider),
+              controller,
+            );
 
-              setState(() {
-                this.placesWithWeatherAndCoords = placesWithWeatherAndCoords;
-              });
+            setState(() {
+              this.placesWithWeatherAndCoords = placesWithWeatherAndCoords;
+            });
 
-              _controller.complete(controller);
-            },
-          ),
-          for (var MapEntry(key: place, value: (weather, coord))
-              in placesWithWeatherAndCoords.entries)
-            Positioned(
-              left: coord.x.toDouble() - 50,
-              top: coord.y.toDouble() - 50,
-              child: WeatherBubble(
-                place: place,
-                weather: weather!,
-              ),
+            _controller.complete(controller);
+          },
+        ),
+        for (var MapEntry(key: place, value: (weather, coord))
+            in placesWithWeatherAndCoords.entries)
+          Positioned(
+            left: coord.x.toDouble() - 50,
+            top: coord.y.toDouble() - 50,
+            child: WeatherBubble(
+              place: place,
+              weather: weather!,
             ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _goToTheLake,
-        label: const Text('To the lake!'),
-        icon: const Icon(Icons.directions_boat),
-      ),
+          ),
+      ],
     );
-  }
-
-  Future<void> _goToTheLake() async {
-    final GoogleMapController controller = await _controller.future;
-    await controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
   }
 }

@@ -39,6 +39,7 @@ class WeatherBubble extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               Row(
+                spacing: 6.0,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   WeatherIcon(weatherCode: weather.weather_code!),
