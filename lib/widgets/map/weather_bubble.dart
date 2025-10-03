@@ -17,21 +17,40 @@ class WeatherBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Bubble(
-      child: Column(
-        spacing: 4.0,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(place.displayNames?.text ?? 'Unknown'),
-          Row(
-            mainAxisSize: MainAxisSize.min,
+    return Theme(
+      data: Theme.of(context).copyWith(
+        textTheme: Theme.of(context).textTheme.apply(
+              bodyColor: Theme.of(context).colorScheme.onPrimary,
+              displayColor: Theme.of(context).colorScheme.onPrimary,
+            ),
+        iconTheme: IconThemeData(
+          color: Theme.of(context).colorScheme.onPrimary,
+        ),
+      ),
+      child: Builder(builder: (context) {
+        return Bubble(
+          color: Theme.of(context).colorScheme.primary,
+          child: Column(
+            spacing: 4.0,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              WeatherIcon(weatherCode: weather.weather_code!),
-              TemperatureText(temperature: weather.temperature_2m!),
+              Text(
+                place.displayNames?.text ?? 'Unknown',
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  WeatherIcon(weatherCode: weather.weather_code!),
+                  TemperatureText(
+                      temperature: weather.temperature_2m!,
+                      style: Theme.of(context).textTheme.titleMedium),
+                ],
+              ),
             ],
           ),
-        ],
-      ),
+        );
+      }),
     );
   }
 }
