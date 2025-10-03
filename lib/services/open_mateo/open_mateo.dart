@@ -43,4 +43,18 @@ class OpenMateoService {
 
     return result;
   }
+
+  Future<CurrentWeather?> fetchWeatherAtLocation(
+    double latitude,
+    double longitude,
+  ) async {
+    final response = await dio.get(openMateoUrlBuilder.getWeatherAtLocationUrl(
+      latitude,
+      longitude,
+    ));
+
+    final data = WeatherAtLocationResponse.fromJson(response.data);
+
+    return data.current;
+  }
 }

@@ -70,3 +70,26 @@ class DailyForecastResponse with _$DailyForecastResponse {
   factory DailyForecastResponse.fromJson(Map<String, Object?> json) =>
       _$DailyForecastResponseFromJson(json);
 }
+
+@freezed
+class WeatherAtLocationResponse with _$WeatherAtLocationResponse {
+  factory WeatherAtLocationResponse({
+    double? latitude,
+    double? longitude,
+    CurrentWeather? current,
+  }) = _WeatherAtLocationResponse;
+
+  factory WeatherAtLocationResponse.fromJson(Map<String, Object?> json) =>
+      _$WeatherAtLocationResponseFromJson(json);
+}
+
+@freezed
+class CurrentWeather with _$CurrentWeather {
+  factory CurrentWeather({
+    double? temperature_2m,
+    int? weather_code,
+    String? time,
+  }) = _CurrentWeather;
+  factory CurrentWeather.fromJson(Map<String, Object?> json) =>
+      _$CurrentWeatherFromJson(json);
+}

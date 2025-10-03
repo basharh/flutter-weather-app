@@ -77,3 +77,36 @@ Map<String, dynamic> _$$DailyForecastResponseImplToJson(
     <String, dynamic>{
       'daily': instance.daily,
     };
+
+_$WeatherAtLocationResponseImpl _$$WeatherAtLocationResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$WeatherAtLocationResponseImpl(
+      latitude: (json['latitude'] as num?)?.toDouble(),
+      longitude: (json['longitude'] as num?)?.toDouble(),
+      current: json['current'] == null
+          ? null
+          : CurrentWeather.fromJson(json['current'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$WeatherAtLocationResponseImplToJson(
+        _$WeatherAtLocationResponseImpl instance) =>
+    <String, dynamic>{
+      'latitude': instance.latitude,
+      'longitude': instance.longitude,
+      'current': instance.current,
+    };
+
+_$CurrentWeatherImpl _$$CurrentWeatherImplFromJson(Map<String, dynamic> json) =>
+    _$CurrentWeatherImpl(
+      temperature_2m: (json['temperature_2m'] as num?)?.toDouble(),
+      weather_code: (json['weather_code'] as num?)?.toInt(),
+      time: json['time'] as String?,
+    );
+
+Map<String, dynamic> _$$CurrentWeatherImplToJson(
+        _$CurrentWeatherImpl instance) =>
+    <String, dynamic>{
+      'temperature_2m': instance.temperature_2m,
+      'weather_code': instance.weather_code,
+      'time': instance.time,
+    };

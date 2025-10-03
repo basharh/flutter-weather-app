@@ -1,66 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:weather/services/google_places/data.dart';
+import 'package:weather/services/open_mateo/data.dart';
+import 'package:weather/widgets/common/temperature_text.dart';
+import 'package:weather/widgets/common/weather_icon.dart';
+import 'package:weather/widgets/map/bubble.dart';
 
-/// A Widget that displays a weather bubble with a triangle pointer in the bottom center
 class WeatherBubble extends StatelessWidget {
-  final Widget child;
-  final Color color;
-  final double borderRadius;
-  final double triangleHeight;
-  final double triangleWidth;
+  final Place place;
+  final CurrentWeather weather;
 
   const WeatherBubble({
     super.key,
-    required this.child,
-    this.color = Colors.blueAccent,
-    this.borderRadius = 16.0,
-    this.triangleHeight = 12.0,
-    this.triangleWidth = 20.0,
+    required this.place,
+    required this.weather,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(borderRadius),
+    return Bubble(
+      child: Column(
+        spacing: 4.0,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(place.displayNames?.text ?? 'Unknown'),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              WeatherIcon(weatherCode: weather.weather_code!),
+              TemperatureText(temperature: weather.temperature_2m!),
+            ],
           ),
-          padding: EdgeInsets.only(
-            top: 16.0,
-            left: 16.0,
-            right: 16.0,
-            bottom: triangleHeight + 16.0,
-          ),
-          child: child,
-        ),
-        CustomPaint(
-          size: Size(triangleWidth, triangleHeight),
-          painter: _TrianglePainter(color),
-        ),
-      ],
+        ],
+      ),
     );
-  }
-}
-
-class _TrianglePainter extends CustomPainter {
-  final Color color;
-
-  _TrianglePainter(this.color);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()..color = color;
-    final path = Path()
-      ..moveTo(0, 0)
-      ..lineTo(size.width / 2, size.height)
-      ..lineTo(size.width, 0)
-      ..close();
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
   }
 }

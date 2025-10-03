@@ -49,4 +49,14 @@ class OpenMateoUrlBuilder {
       },
     ).toString();
   }
+
+  String getWeatherAtLocationUrl(double latitude, double longitude) {
+    return uri.replace(
+      queryParameters: {
+        'latitude': latitude.toString(),
+        'longitude': longitude.toString(),
+        'current': 'temperature_2m,weather_code',
+      },
+    ).toString();
+  }
 }

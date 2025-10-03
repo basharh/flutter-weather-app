@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:weather/providers/services/google_places.dart';
+import 'package:weather/providers/services/open_mateo.dart';
+import 'package:weather/services/google_places/data.dart';
+import 'package:weather/services/open_mateo/data.dart';
+import 'package:weather/widgets/map/util.dart';
 import 'package:weather/widgets/map/weather_bubble.dart';
 
 class WeatherMap extends ConsumerStatefulWidget {
@@ -14,7 +18,9 @@ class WeatherMap extends ConsumerStatefulWidget {
 }
 
 class WeatherMapState extends ConsumerState<WeatherMap> {
-  List<(double, double)> points = [];
+  /// list of places with their weather and screen coordinates
+  Map<Place, (CurrentWeather?, ScreenCoordinate)> placesWithWeatherAndCoords =
+      {};
 
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
@@ -45,10 +51,6 @@ class WeatherMapState extends ConsumerState<WeatherMap> {
               // sleep
               await Future.delayed(const Duration(milliseconds: 50));
 
-              final coordinates = await controller.getScreenCoordinate(
-                const LatLng(37.42796133580664, -122.085749655962),
-              );
-
               final googlePlacesService = ref.read(googlePlacesServiceProvider);
 
               final nearbyPlaces =
@@ -57,67 +59,29 @@ class WeatherMapState extends ConsumerState<WeatherMap> {
                 -122.085749655962,
               );
 
-              final nearbyPoints = await Future.wait(
-                nearbyPlaces.map(
-                  (place) async {
-                    final coords = await controller.getScreenCoordinate(
-                      LatLng(
-                        place.location!.latitude!,
-                        place.location!.longitude!,
-                      ),
-                    );
-
-                    return (coords.x.toDouble(), coords.y.toDouble());
-                  },
-                ),
+              final placesWithWeatherAndCoords = await fetchWeatherForPlaces(
+                nearbyPlaces,
+                ref.read(openMateoServiceProvider),
+                controller,
               );
 
               setState(() {
-                points = [
-                  // add the latlng for the center
-                  (
-                    coordinates.x.toDouble(),
-                    coordinates.y.toDouble(),
-                  ),
-                  ...nearbyPoints
-                ];
+                this.placesWithWeatherAndCoords = placesWithWeatherAndCoords;
               });
 
               _controller.complete(controller);
             },
           ),
-
-          // Overlay the weather bubbles at the points
-          for (var point in points)
+          for (var MapEntry(key: place, value: (weather, coord))
+              in placesWithWeatherAndCoords.entries)
             Positioned(
-              left: point.$1 - 50,
-              top: point.$2 - 50,
+              left: coord.x.toDouble() - 50,
+              top: coord.y.toDouble() - 50,
               child: WeatherBubble(
-                color: Colors.orangeAccent.withOpacity(0.7),
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    '25°C',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+                place: place,
+                weather: weather!,
               ),
             ),
-
-          //Positioned(
-          //left: points.isNotEmpty ? points.last.$1 - 75 : 0,
-          //top: points.isNotEmpty ? points.last.$2 - 75 : 0,
-          //child: WeatherBubble(
-          //color: Colors.blueAccent.withOpacity(0.7),
-          //child: const Padding(
-          //padding: EdgeInsets.all(8.0),
-          //child: Text(
-          //'Weather Info',
-          //style: TextStyle(color: Colors.white),
-          //),
-          //),
-          //),
-          //),
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
