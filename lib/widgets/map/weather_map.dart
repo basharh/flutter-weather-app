@@ -18,6 +18,9 @@ class WeatherMap extends ConsumerStatefulWidget {
 }
 
 class WeatherMapState extends ConsumerState<WeatherMap> {
+  /// current camera position
+  CameraPosition? _currentCameraPosition;
+
   /// list of places with their weather and screen coordinates
   Map<Place, (CurrentWeather?, ScreenCoordinate)> placesWithWeatherAndCoords =
       {};
@@ -37,18 +40,19 @@ class WeatherMapState extends ConsumerState<WeatherMap> {
         GoogleMap(
           mapType: MapType.normal,
           initialCameraPosition: _kGooglePlex,
-          onMapCreated: (GoogleMapController controller) async {
-            if (!mounted) return;
-
-            // sleep
-            await Future.delayed(const Duration(milliseconds: 50));
+          myLocationEnabled: true,
+          myLocationButtonEnabled: true,
+          onCameraIdle: () async {
+            final controller = await _controller.future;
 
             final googlePlacesService = ref.read(googlePlacesServiceProvider);
 
             final nearbyPlaces =
                 await googlePlacesService.fetchNearbyLocalities(
-              37.42796133580664,
-              -122.085749655962,
+              _currentCameraPosition?.target.latitude ??
+                  _kGooglePlex.target.latitude,
+              _currentCameraPosition?.target.longitude ??
+                  _kGooglePlex.target.longitude,
             );
 
             final placesWithWeatherAndCoords = await fetchWeatherForPlaces(
@@ -60,8 +64,19 @@ class WeatherMapState extends ConsumerState<WeatherMap> {
             setState(() {
               this.placesWithWeatherAndCoords = placesWithWeatherAndCoords;
             });
+          },
+          onMapCreated: (GoogleMapController controller) async {
+            if (!mounted) return;
 
             _controller.complete(controller);
+          },
+          onCameraMove: (CameraPosition position) {
+            _currentCameraPosition = position;
+          },
+          onCameraMoveStarted: () {
+            setState(() {
+              placesWithWeatherAndCoords = {};
+            });
           },
         ),
         for (var MapEntry(key: place, value: (weather, coord))

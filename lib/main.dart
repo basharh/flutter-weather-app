@@ -18,7 +18,7 @@ void main() {
 class WeatherApp extends ConsumerWidget {
   final String initialRoute;
 
-  const WeatherApp({super.key, this.initialRoute = '/map2'});
+  const WeatherApp({super.key, this.initialRoute = '/week'});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -19,7 +19,7 @@ class GooglePlacesService {
         "locationRestriction": {
           "circle": {
             "center": {"latitude": latitude, "longitude": longitude},
-            "radius": 1500.0
+            "radius": 2500.0
           }
         }
       },
