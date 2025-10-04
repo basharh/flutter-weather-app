@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:weather/pages/day.dart';
-import 'package:weather/pages/map2.dart';
+import 'package:weather/pages/map.dart';
 import 'package:weather/pages/week.dart';
 import 'package:weather/providers/brightness_mode.dart';
 import 'package:weather/utils/theme_data.dart';
@@ -29,7 +29,7 @@ class WeatherApp extends ConsumerWidget {
       routes: {
         '/week': (_) => const WeekPage(),
         '/day': (_) => const DayPage(),
-        '/map2': (_) => const MapPage(),
+        '/map': (_) => const MapPage(),
       },
     );
   }
