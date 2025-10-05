@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:weather/providers/services/open_mateo.dart';
 import 'package:weather/services/open_mateo/data.dart';
+import 'package:weather/utils/init.dart';
 import 'package:weather/widgets/common/hours_row.dart';
 import 'package:weather/widgets/common/layout/layout.dart';
 import 'package:weather/widgets/week/days_column.dart';
@@ -12,13 +13,20 @@ class WeekPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final openMateoService = ref.read(openMateoServiceProvider);
+    final position = ref.read(initInfoProvider).position;
 
     return Layout(
       title: 'Weekly Forecast',
       child: FutureBuilder(
         future: Future.wait([
-          openMateoService.fetchHourly(),
-          openMateoService.fetchDaily(),
+          openMateoService.fetchHourly(
+            position.latitude,
+            position.longitude,
+          ),
+          openMateoService.fetchDaily(
+            position.latitude,
+            position.longitude,
+          ),
         ]),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

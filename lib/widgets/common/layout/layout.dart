@@ -10,7 +10,7 @@ class _MapIconButton extends ConsumerWidget {
     return IconButton(
       icon: const Icon(Icons.map_outlined),
       onPressed: () {
-        Navigator.pushNamed(context, '/map2');
+        Navigator.pushNamed(context, '/map');
       },
       tooltip: 'Open Map',
     );

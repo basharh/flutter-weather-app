@@ -3,11 +3,13 @@ import 'package:weather/services/open_mateo/data.dart';
 import 'package:weather/widgets/chart/hourly_weather_chart.dart';
 
 class DayDetailsCard extends StatelessWidget {
+  final String localityName;
   final Map<String, HourlyData> hourlyData;
 
   const DayDetailsCard({
     super.key,
     required this.hourlyData,
+    required this.localityName,
   });
 
   @override
@@ -34,10 +36,10 @@ class DayDetailsCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const _Location(),
+                      _Location(localityName: localityName),
                       Text(
-                        'Today 00:32 PM',
-                        style: Theme.of(context).textTheme.bodySmall,
+                        'Today ${TimeOfDay.now().format(context)}',
+                        style: Theme.of(context).textTheme.bodyMedium,
                       )
                     ],
                   ),
@@ -136,7 +138,9 @@ class _WeatherConditionsRow extends StatelessWidget {
 }
 
 class _Location extends StatelessWidget {
-  const _Location();
+  final String localityName;
+
+  const _Location({required this.localityName});
 
   @override
   Widget build(BuildContext context) {
@@ -147,7 +151,10 @@ class _Location extends StatelessWidget {
           Icons.place_outlined,
           size: Theme.of(context).textTheme.titleMedium?.fontSize,
         ),
-        Text('Gotham', style: Theme.of(context).textTheme.bodyMedium),
+        Text(
+          localityName,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
       ],
     );
   }
