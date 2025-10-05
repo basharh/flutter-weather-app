@@ -15,7 +15,7 @@ class TimeText extends StatelessWidget {
     return FittedBox(
       fit: BoxFit.contain,
       child: Text(
-        '$time PM',
+        time,
         style: Theme.of(context).textTheme.bodySmall?.merge(style),
       ),
     );

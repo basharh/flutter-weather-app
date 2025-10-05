@@ -36,4 +36,18 @@ class GooglePlacesService {
 
     return data.places ?? [];
   }
+
+  Future<TimeZoneResponse> fetchTimeZone(
+      double latitude, double longitude) async {
+    final response = await dio.get(
+      'https://maps.googleapis.com/maps/api/timezone/json',
+      queryParameters: {
+        'location': '$latitude,$longitude',
+        'timestamp': DateTime.now().millisecondsSinceEpoch ~/ 1000,
+        'key': googleMapsApiKey,
+      },
+    );
+
+    return TimeZoneResponse.fromJson(response.data);
+  }
 }

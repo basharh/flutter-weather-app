@@ -13,19 +13,21 @@ class WeekPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final openMateoService = ref.read(openMateoServiceProvider);
-    final position = ref.read(initInfoProvider).position;
+    final init = ref.read(initInfoProvider);
 
     return Layout(
       title: 'Weekly Forecast',
       child: FutureBuilder(
         future: Future.wait([
           openMateoService.fetchHourly(
-            position.latitude,
-            position.longitude,
+            latitude: init.position.latitude,
+            longitude: init.position.longitude,
+            timezone: init.timezone,
           ),
           openMateoService.fetchDaily(
-            position.latitude,
-            position.longitude,
+            latitude: init.position.latitude,
+            longitude: init.position.longitude,
+            timezone: init.timezone,
           ),
         ]),
         builder: (context, snapshot) {

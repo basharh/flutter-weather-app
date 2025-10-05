@@ -44,3 +44,17 @@ class DisplayName with _$DisplayName {
   factory DisplayName.fromJson(Map<String, Object?> json) =>
       _$DisplayNameFromJson(json);
 }
+
+@freezed
+class TimeZoneResponse with _$TimeZoneResponse {
+  factory TimeZoneResponse({
+    int? dstOffset,
+    int? rawOffset,
+    String? status,
+    String? timeZoneId,
+    String? timeZoneName,
+  }) = _TimeZoneResponse;
+
+  factory TimeZoneResponse.fromJson(Map<String, Object?> json) =>
+      _$TimeZoneResponseFromJson(json);
+}

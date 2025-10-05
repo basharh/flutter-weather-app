@@ -8,12 +8,17 @@ class OpenMateoService {
 
   OpenMateoService(this.dio);
 
-  Future<Map<String, HourlyData>> fetchHourly(
-    double latitude,
-    double longitude,
-  ) async {
+  Future<Map<String, HourlyData>> fetchHourly({
+    required double latitude,
+    required double longitude,
+    required String timezone,
+  }) async {
     final response = await dio.get(
-      openMateoUrlBuilder.getHourlyDataUrl(latitude, longitude),
+      openMateoUrlBuilder.getHourlyDataUrl(
+        latitude: latitude,
+        longitude: longitude,
+        timezone: timezone,
+      ),
     );
 
     final data = HourlyForecastResponse.fromJson(response.data);
@@ -31,14 +36,16 @@ class OpenMateoService {
     return result;
   }
 
-  Future<Map<String, DailyData>> fetchDaily(
-    double latitude,
-    double longitude,
-  ) async {
+  Future<Map<String, DailyData>> fetchDaily({
+    required double latitude,
+    required double longitude,
+    required String timezone,
+  }) async {
     final response = await dio.get(
       openMateoUrlBuilder.getDailyDataUrl(
-        latitude,
-        longitude,
+        latitude: latitude,
+        longitude: longitude,
+        timezone: timezone,
       ),
     );
 
@@ -58,13 +65,13 @@ class OpenMateoService {
     return result;
   }
 
-  Future<CurrentWeather?> fetchWeatherAtLocation(
-    double latitude,
-    double longitude,
-  ) async {
+  Future<CurrentWeather?> fetchWeatherAtLocation({
+    required double latitude,
+    required double longitude,
+  }) async {
     final response = await dio.get(openMateoUrlBuilder.getWeatherAtLocationUrl(
-      latitude,
-      longitude,
+      latitude: latitude,
+      longitude: longitude,
     ));
 
     final data = WeatherAtLocationResponse.fromJson(response.data);

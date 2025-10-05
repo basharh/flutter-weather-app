@@ -14,7 +14,10 @@ Future<Map<Place, (CurrentWeather?, ScreenCoordinate)>> fetchWeatherForPlaces(
     final lng = place.location?.longitude;
 
     if (lat != null && lng != null) {
-      return openMateoService.fetchWeatherAtLocation(lat, lng);
+      return openMateoService.fetchWeatherAtLocation(
+        latitude: lat,
+        longitude: lng,
+      );
     } else {
       return Future.value(null);
     }

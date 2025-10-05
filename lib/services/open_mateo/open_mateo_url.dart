@@ -24,7 +24,11 @@ class OpenMateoUrlBuilder {
     path: '/v1/forecast',
   );
 
-  String getHourlyDataUrl(double latitude, double longitude) {
+  String getHourlyDataUrl({
+    required double latitude,
+    required double longitude,
+    required String timezone,
+  }) {
     final (start, end) = _getTodayTimeRange();
     return uri.replace(
       queryParameters: {
@@ -33,11 +37,16 @@ class OpenMateoUrlBuilder {
         'hourly': 'temperature_2m,weather_code',
         'start_hour': start,
         'end_hour': end,
+        'timezone': timezone,
       },
     ).toString();
   }
 
-  String getDailyDataUrl( double latitude, double longitude) {
+  String getDailyDataUrl({
+    required double latitude,
+    required double longitude,
+    required String timezone,
+  }) {
     final (start, end) = _getWeekDateRange();
     return uri.replace(
       queryParameters: {
@@ -46,11 +55,15 @@ class OpenMateoUrlBuilder {
         'daily': 'temperature_2m_min,temperature_2m_max,weather_code',
         'start_date': start,
         'end_date': end,
+        'timezone': timezone,
       },
     ).toString();
   }
 
-  String getWeatherAtLocationUrl(double latitude, double longitude) {
+  String getWeatherAtLocationUrl({
+    required double latitude,
+    required double longitude,
+  }) {
     return uri.replace(
       queryParameters: {
         'latitude': latitude.toString(),

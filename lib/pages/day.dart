@@ -16,19 +16,20 @@ class DayPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final openMateoService = ref.read(openMateoServiceProvider);
     final googlePlacesService = ref.read(googlePlacesServiceProvider);
-    final position = ref.read(initInfoProvider).position;
+    final init = ref.read(initInfoProvider);
 
     return Layout(
       title: 'Day at a Glance',
       child: FutureBuilder(
         future: Future.wait([
           openMateoService.fetchHourly(
-            position.latitude,
-            position.longitude,
+            latitude: init.position.latitude,
+            longitude: init.position.longitude,
+            timezone: init.timezone,
           ),
           googlePlacesService.fetchNearbyLocalities(
-            position.latitude,
-            position.longitude,
+            init.position.latitude,
+            init.position.longitude,
           ),
         ]),
         builder: (context, snapshot) {

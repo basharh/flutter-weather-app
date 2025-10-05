@@ -27,7 +27,10 @@ class WeatherApp extends ConsumerWidget {
 
     return initInfo.when(
       loading: () => const CircularProgressIndicator(),
-      error: (err, stack) => Text('Error: $err'),
+      error: (err, stack) {
+        print('Error during initialization: $err');
+        return Text('Error: $err, $stack');
+      },
       data: (config) {
         return ProviderScope(
           overrides: [
