@@ -24,7 +24,7 @@ class TestMaterialApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: themeData,
+      theme: getThemeData(Brightness.light),
       home: Scaffold(
         body: Center(
           child: child,

@@ -24,6 +24,7 @@ class OpenMateoUrlBuilder {
     path: '/v1/forecast',
   );
 
+  /// Get the URL for fetching weather data for 24 hours of today
   String getHourlyDataUrl({
     required double latitude,
     required double longitude,
@@ -42,6 +43,7 @@ class OpenMateoUrlBuilder {
     ).toString();
   }
 
+  /// Get the URL for fetching daily weather data for the next 7 days
   String getDailyDataUrl({
     required double latitude,
     required double longitude,
@@ -60,6 +62,7 @@ class OpenMateoUrlBuilder {
     ).toString();
   }
 
+  /// Get the URL for fetching current weather data at a specific location
   String getWeatherAtLocationUrl({
     required double latitude,
     required double longitude,

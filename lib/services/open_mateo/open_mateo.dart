@@ -8,6 +8,7 @@ class OpenMateoService {
 
   OpenMateoService(this.dio);
 
+  /// Fetch hourly weather data for the given latitude and longitude for the current 24 hours
   Future<Map<String, HourlyData>> fetchHourly({
     required double latitude,
     required double longitude,
@@ -36,6 +37,7 @@ class OpenMateoService {
     return result;
   }
 
+  /// Fetch daily weather data for the given latitude and longitude for the next 7 days
   Future<Map<String, DailyData>> fetchDaily({
     required double latitude,
     required double longitude,

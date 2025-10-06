@@ -20,7 +20,7 @@ void main() {
       }
     };
 
-    when(client.get(OpenMateoService.hourlyUri.toString())).thenAnswer(
+    when(client.get(any)).thenAnswer(
       (_) async => dio.Response(
         data: data,
         statusCode: 200,
@@ -28,7 +28,13 @@ void main() {
       ),
     );
 
-    final response = await service.fetchHourly();
+    final response = await service.fetchHourly(
+      latitude: 52.52,
+      longitude: 13.405,
+      timezone: 'America/New_York',
+    );
+
+    // TODO: verify that the get method was called with the correct URL
 
     expect(response, isA<Map<String, HourlyData>>());
     expect(response.length, 3);
@@ -63,7 +69,7 @@ void main() {
       }
     };
 
-    when(client.get(OpenMateoService.dailyUri.toString())).thenAnswer(
+    when(client.get(any)).thenAnswer(
       (_) async => dio.Response(
         data: data,
         statusCode: 200,
@@ -71,7 +77,12 @@ void main() {
       ),
     );
 
-    final response = await service.fetchDaily();
+    final response = await service.fetchDaily(
+      latitude: 52.52,
+      longitude: 13.405,
+      timezone: 'America/New_York',
+    );
+
     expect(response, isA<Map<String, DailyData>>());
     expect(response.length, 7);
 
