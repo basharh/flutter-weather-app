@@ -1,4 +1,6 @@
+import 'package:clock/clock.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weather/services/open_mateo/data.dart';
 import 'package:weather/widgets/chart/hourly_weather_chart.dart';
 
@@ -38,7 +40,7 @@ class DayDetailsCard extends StatelessWidget {
                     children: [
                       _Location(localityName: localityName),
                       Text(
-                        'Today ${TimeOfDay.now().format(context)}',
+                        'Today ${DateFormat('h:mm a').format(clock.now())}',
                         style: Theme.of(context).textTheme.bodyMedium,
                       )
                     ],

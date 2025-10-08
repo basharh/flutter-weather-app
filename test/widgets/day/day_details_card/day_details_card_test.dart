@@ -1,3 +1,4 @@
+import 'package:clock/clock.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:weather/widgets/day/day_details_card/day_details_card.dart';
 
@@ -9,19 +10,22 @@ void main() {
     testWidgets('golden test', (tester) async {
       await tester.setScreenSize(width: 250, height: 350);
 
-      await tester.pumpWidget(
-        TestMaterialApp(
-          child: DayDetailsCard(
-            hourlyData: getDummyHourlyData(),
-            localityName: 'New York',
+      // need to await to get any errors
+      await withClock(Clock.fixed(DateTime(2025, 10, 27, 11, 30, 0)), () async {
+        await tester.pumpWidget(
+          TestMaterialApp(
+            child: DayDetailsCard(
+              hourlyData: getDummyHourlyData(),
+              localityName: 'New York',
+            ),
           ),
-        ),
-      );
+        );
 
-      await expectLater(
-        find.byType(TestMaterialApp),
-        matchesGoldenFile('golden/day_details_card.png'),
-      );
+        await expectLater(
+          find.byType(TestMaterialApp),
+          matchesGoldenFile('golden/day_details_card.png'),
+        );
+      });
     });
   });
 }
