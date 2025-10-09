@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:weather/pages/week.dart';
+import 'package:weather/pages/week_page.dart';
 import 'package:weather/providers/services/open_mateo.dart';
 import 'package:weather/services/open_mateo/open_mateo.dart';
 import 'package:weather/widgets/common/hour_weather/hour_weather.dart';
@@ -10,9 +10,9 @@ import 'package:weather/widgets/week/daily_weather_card.dart';
 
 import 'package:weather/widgets/week/days_column.dart';
 
-import '../../utils/data.dart';
-import '../../utils/mocks.mocks.dart';
-import '../../utils/test_material_app.dart';
+import '../utils/data.dart';
+import '../utils/mocks.mocks.dart';
+import '../utils/test_material_app.dart';
 
 void main() {
   group('WeekPage', () {
